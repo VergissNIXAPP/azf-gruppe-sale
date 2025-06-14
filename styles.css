@@ -73,11 +73,10 @@ p {
 }
 
 .grid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  padding: 2rem;
-  animation: fadeIn 1s ease-in-out;
+  grid-template-columns: repeat(auto-fit, minmax(431px, 1fr));
+  gap: 1.5rem;
 }
 
 .card {

@@ -146,12 +146,6 @@ p {
   margin: 1rem auto 0;
   text-align: center;
 }
-.card-section-title {
-  font-size: 3rem;
-  text-align: center;
-  margin-top: 2rem;
-  font-weight: 400;
-}
 
 .card-content {
   padding: 1rem;
@@ -599,8 +593,9 @@ header {
     overflow-x: auto;    /* scrollt zur Seite, wenn’s nicht passt */
     gap: 0.6rem;         /* engerer Abstand */
   }
-
-
+  
+  .card-section-title {
+  font-size: 2rem;
   }
 
 

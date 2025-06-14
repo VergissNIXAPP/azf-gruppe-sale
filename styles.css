@@ -452,7 +452,11 @@ body.dark-mode .divider {
   .branding-bar .azf-logo img {
     max-height: 45px;
   }
-
+  
+    .card-section-title {
+  font-size: 2rem;
+}
+  
   .branding-bar .brand-logos img {
     height: 24px;
   }

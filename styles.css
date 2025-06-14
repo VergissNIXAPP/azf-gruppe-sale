@@ -598,6 +598,48 @@ header {
   font-size: 2rem;
   }
 
+  <style>
+  @media (max-width: 768px) {
+    .card-section-title {
+      font-size: 1.5rem;
+      padding: 0 1rem;
+      line-height: 1.3;
+    }
+
+    .card {
+      max-width: 95% !important;
+      margin: 1rem auto;
+    }
+
+    .card-content {
+      padding: 1rem;
+    }
+
+    .card-title-above {
+      font-size: 1.1rem;
+    }
+
+    .leasing {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .zusatzkosten,
+    .details {
+      font-size: 0.9rem;
+    }
+
+    .ahk-hinweis {
+      font-size: 0.95rem;
+    }
+
+    button.anfrage-button {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+</style>
+
 
 
 

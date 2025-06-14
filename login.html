@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | AZF-GRUPPE.DE</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="fonts.css" />
+  <link rel="stylesheet" href="custom.css" />
+  <link rel="stylesheet" href="all.min.css" />
+  <link rel="stylesheet" href="aos.css" />
+  <link rel="stylesheet" href="swiper-bundle.min.css" />
+  <link rel="stylesheet" href="leaflet.css" />
+  <link rel="stylesheet" href="lightgallery-bundle.min.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    body {
+      display: flex;
+    }
+
+    .left-side, .right-side {
+      width: 50vw;
+      height: 100vh;
+    }
+
+    .left-side {
+      background: url('2222.jpg') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .azf-logo {
+      max-width: 280px;
+      width: 80%;
+    }
+
+    .brand-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .brand-logos img {
+      height: 35px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      max-width: 90px;
+    }
+
+    .brand-logos img[alt="Audi"] {
+      max-width: 80px;
+    }
+
+    .brand-logos img[alt="Skoda"] {
+      max-width: 70px;
+    }
+
+    .divider {
+      height: 30px;
+      width: 1px;
+      background-color: white;
+      opacity: 0.4;
+    }
+
+    .right-side {
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 0 5vw;
+    }
+
+    .dark-toggle-icon {
+      margin-bottom: 2rem;
+    }
+
+    .dark-toggle-icon button {
+      position: relative;
+      border: none;
+      background: white;
+      color: #111;
+      padding: 0.5rem;
+      border-radius: 9999px;
+      transition: all 0.2s ease;
+    }
+
+    .dark-toggle-icon button svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    body.dark-mode .dark-toggle-icon button {
+      background: #1f1f1f;
+      color: white;
+    }
+
+    .login-form {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .login-form h2 {
+      font-size: 2rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .login-form h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 0.5rem 0;
+    }
+
+    .login-form p {
+      font-size: 1rem;
+      color: #888;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .login-form button.submit {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #b9002c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 0.5rem;
+    }
+
+    body.dark-mode {
+      background-color: #111;
+    }
+
+    body.dark-mode .right-side {
+      background-color: #1b1b1b;
+      color: #eee;
+    }
+
+    body.dark-mode input {
+      background-color: #2a2a2a;
+      border-color: #555;
+      color: #eee;
+    }
+
+    body.dark-mode .login-form button.submit {
+      background-color: #e60036;
+    }
+  </style>
+</head>
+<body>
+  <div class="left-side">
+    <img src="logos/AZF-Logo-4c_1_WHITE.png" alt="AZF Logo" class="azf-logo">
+    <div class="brand-logos">
+      <img src="logos/VW-Logo.png" alt="VW">
+      <div class="divider"></div>
+      <img src="logos/Audi-Logo.png" alt="Audi">
+      <div class="divider"></div>
+      <img src="logos/VWN-Logo.png" alt="VW Nutzfahrzeuge">
+      <div class="divider"></div>
+      <img src="logos/SEAT-Logo.png" alt="SEAT">
+      <div class="divider"></div>
+      <img src="logos/CUPRA-Logo.png" alt="CUPRA">
+      <div class="divider"></div>
+      <img src="logos/Skoda-Logo.png" alt="Skoda">
+      <div class="divider"></div>
+      <img src="logos/Maxus-Logo.png" alt="Maxus">
+    </div>
+  </div>
+
+  <div class="right-side">
+    <div class="dark-toggle-icon">
+      <button type="button" onclick="toggleDarkMode()" aria-expanded="false">
+        <span class="sr-only">Toggle Darkmode</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+          <path stroke-width="1.5" stroke="currentColor" d="M304 0c8.8 0 16 7.2 16 16v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16h-32v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V80h-32c-8.8 0-16-7.2-16-16s7.2-16 16-16h32V16c0-8.8 7.2-16 16-16zM156.6 163.9C85.3 180 32 243.8 32 320.2 32 408.7 103.6 480.4 191.8 480.4c25.7 0 50-6.1 71.5-16.9-87.6-11.3-155.1-86.4-155.1-177.2 0-47.4 18.4-90.4 48.4-122.4zM0 320.2C0 214.1 85.8 128 191.8 128c5.5 0 10.9.2 16.3.7 7 .6 12.8 5.7 14.3 12.5s-1.6 13.9-7.7 17.3c-44.4 25.2-74.4 73-74.4 127.8 0 81 65.5 146.6 146.2 146.6 8.6 0 17-.7 25.1-2.2 6.9-1.2 13.8 2.2 17 8.5s1.9 13.8-3.1 18.7c-34.5 33.6-81.7 54.4-133.6 54.4C85.8 512.4 0 426.3 0 320.2zM432 160v64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16h-64v64c0 8.8-7.2 16-16 16s-16-7.2-16-16v-64h-64c-8.8 0-16-7.2-16-16s7.2-16 16-16h64v-64c0-8.8 7.2-16 16-16s16 7.2 16 16z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="login-form">
+      <h2>Anmelden</h2>
+      <h3>Jetzt bei AZF-SALE anmelden</h3>
+      <p style="text-align: left;">Genießen Sie Ihre Angebote!</p>
+      <div class="form-group">
+        <label for="username">Benutzername</label>
+        <input type="text" id="username" placeholder="Benutzername" />
+      </div>
+      <div class="form-group">
+        <label for="password">Passwort</label>
+        <input type="password" id="password" placeholder="Passwort" />
+      </div>
+      <button class="submit" onclick="checkLogin()">Anmelden →</button>
+      <div class="error-message" id="errorMsg"></div>
+    </div>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+
+      if (user === 'azf' && pass === 'sale') {
+        localStorage.setItem('isLoggedIn', 'true');
+        window.location.href = 'index.html';
+      } else {
+        document.getElementById('errorMsg').textContent = 'Falsche Zugangsdaten!';
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>

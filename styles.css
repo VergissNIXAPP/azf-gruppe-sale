@@ -1,0 +1,588 @@
+/* styles.css – Modernisiertes AZF Portal Style */
+
+/* Grundstruktur */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: #f4f4f4;
+  color: #222;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+header {
+  background-image: url('2222.jpg');
+  background-repeat: no-repeat;
+  background-position: center 100%; /* Zeigt unteren Bildausschnitt */
+  background-size: cover;
+  background-attachment: scroll; /* Statt fixed – besser für Mobile */
+ 
+  padding-top: 3rem;     /* rückt Inhalt weiter runter */
+  padding-bottom: 2rem;  /* Abstand nach unten */
+
+  color: white;
+  text-align: center;
+
+  height: 600px;         /* Gesamthöhe des Headers */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+
+  position: relative;
+  animation: fadeIn 2s ease-in-out;
+}
+
+}
+.header-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  line-height: 1.3;
+}
+
+.header-text h1 {
+  font-size: 4.5rem;
+  font-weight: 700;
+  white-space: nowrap; /* verhindert Umbruch */
+  margin: 0;
+}
+
+.header-text p {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-top: 0.3rem;
+}
+
+p {
+  font-size: 0.95rem; /* oder kleiner, z. B. 0.95rem für den Verbrauchstext */
+  font-weight: 400;
+  margin: 1rem auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 2rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.card {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  border: none;
+  
+  transition: transform 0.3s ease;
+  position: relative;
+  color: #222;
+}
+
+.card:hover {
+  transform: translateY(-0.5rem);
+}
+
+
+
+
+.card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  color: #222;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-title-above {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 1rem auto 0;
+  text-align: center;
+}
+.card-section-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 400;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.ahk-hinweis {
+  margin: 0.2rem 0;
+}
+
+.leasing {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #d72638;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.zusatzkosten {
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+/* Buttons */
+.anfrage-button {
+  background: #d72638;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  margin: 1rem auto;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  display: block;
+}
+
+.anfrage-button:hover {
+  background: #b61d2b;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+}
+
+.modal-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.modal-form label {
+  display: block;
+  margin: 0.6rem 0 0.2rem;
+  font-weight: 600;
+}
+
+.modal-form input,
+.modal-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.anfrage-abbrechen {
+  background: #ccc;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Footer */
+.site-footer {
+  background: #222;
+  color: #fff;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.site-footer a {
+  color: #fa541c;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Animationen */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.left-side {
+  flex: 1;
+  background: url('2222.jpg') no-repeat center center;
+  background-size: cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.azf-logo img {
+  max-width: 200px;
+  margin-bottom: 0.5rem;
+}
+
+.azf-logo p {
+  font-size: 1rem;
+  color: white;
+}
+
+.brands {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  max-width: 90%;
+  flex-shrink: 1;
+}
+
+.brands img {
+  max-height: 35px;
+  width: auto;
+  object-fit: contain;
+  padding: 0 0.4rem;
+}
+
+.divider {
+  width: 1px;
+  height: 25px;
+  background: white;
+  opacity: 0.5;
+}
+body.dark-mode {
+  background-color: #111 !important;
+  color: #eee !important;
+}
+
+body.dark-mode .right-side {
+  background-color: #1a1a1a;
+  color: #eee;
+}
+
+body.dark-mode input,
+body.dark-mode label {
+  background-color: #333;
+  color: #eee;
+  border-color: #555;
+}
+
+body.dark-mode .login-box p {
+  color: #ccc;
+}
+
+body.dark-mode .divider {
+  background: #888;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #111; /* oder dein Hintergrund */
+}
+
+.brand-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.brand-logos img {
+  height: 45px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  max-width: 90px;
+}
+
+.brand-logos img[alt="Audi"] {
+  max-width: 80px;
+}
+
+.brand-logos img[alt="Skoda"] {
+  max-width: 70px;
+}
+
+.divider {
+  height: 30px;
+  width: 1px;
+  background-color: white;
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .sticky-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+.branding-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 20%, transparent 100%);
+}
+
+.branding-bar .azf-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: brightness(0) invert(1);
+}
+
+.branding-bar .azf-logo img {
+  max-height: 60px;
+}
+
+.branding-bar .azf-logo p {
+  color: white;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+}
+
+.branding-bar .brand-logos {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+  row-gap: 0;
+}
+
+.branding-bar .brand-logos img {
+  height: 30px;
+  filter: brightness(0) invert(1);
+}
+
+/* Mobilanpassung */
+@media (max-width: 768px) {
+  .branding-bar {
+    padding: 0.5rem;
+  }
+
+  .branding-bar .azf-logo img {
+    max-height: 45px;
+  }
+
+  .branding-bar .brand-logos img {
+    height: 24px;
+  }
+.branding-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 0.8rem 1rem 0.6rem;
+  z-index: 2000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.branding-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.azf-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.azf-logo img {
+  max-height: 55px;
+}
+
+.azf-logo p {
+  color: #222;
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+  font-weight: 500;
+}
+
+.brand-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.brand-logos img {
+  height: 28px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .azf-logo img 
+    max-height: 30px;
+  }
+  .brand-logos img {
+    height: 30px;
+  }
+}
+/* Branding oben im Header */
+.branding-inside-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  padding: 1rem;
+  border-radius: 12px;
+  max-width: 90%;
+  margin-top: 1rem;
+}
+
+header {
+  background: url('2222.jpg') no-repeat center center !important;
+  background-size: cover;
+  background-attachment: scroll;
+  height: 600px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 1rem;
+  color: white;
+}
+
+.azf-logo img {
+  max-height: 60px;
+}
+
+.azf-logo p {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: #222;
+  font-weight: 500;
+  text-align: center;
+}
+
+.brand-logos {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+}
+
+.brand-logos img {
+  height: 30px;
+  object-fit: contain;
+}
+
+@media (max-width: 600px) {
+  
+  header {
+  background-image: url('2223.jpg');
+  height: 600px;         /* Gesamthöhe des Headers */
+}
+  
+  .header-text h1 {
+    font-size: 2.7rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .header-text p {
+    font-size: 1.9rem;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  .brand-logos img {
+    height: 20px;        /* noch etwas kleiner */
+    max-width: 60px;     /* verhindert zu breite Logos wie Audi/Skoda */
+    flex-shrink: 1;      /* erlaubt Verkleinerung */
+  }
+
+  .brand-logos {
+    flex-wrap: nowrap;   /* alles in eine Zeile zwingen */
+    overflow-x: auto;    /* scrollt zur Seite, wenn’s nicht passt */
+    gap: 0.6rem;         /* engerer Abstand */
+  }
+
+
+  }
+
+
+
+

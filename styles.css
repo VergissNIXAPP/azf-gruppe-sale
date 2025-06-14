@@ -80,6 +80,12 @@ p {
   animation: fadeIn 1s ease-in-out;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .card {
   border-radius: 0.5rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);

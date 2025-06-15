@@ -1,0 +1,342 @@
+function initCustomSwiperElements() {
+  var swipers = document.querySelectorAll('[data-trigger="swiper"]');
+  var swipers_normal = document.querySelectorAll('[data-trigger="swiper-normal"]');
+  var autplay_swipers = document.querySelectorAll(
+    '[data-trigger="swiper-autoplay"]'
+  );
+
+  swipers.forEach(function (swiper) {
+    var initSwiper = new Swiper("." + swiper.getAttribute("data-target"), {
+      breakpoints: {
+        // when window width is >= 320px
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        dynamicBullets: true,
+      },
+      navigation: {
+        nextEl: ".nextBtn",
+        prevEl: ".prevBtn",
+      },
+    });
+
+    initSwiper.on("slideChange", function () {
+      setTimeout(() => {
+        var scrollPosition = window.scrollY;
+        if (this.el.getAttribute("data-details") == "false") {
+          this.el.setAttribute("data-details", "true");
+          document.body.classList.add("no-scroll"); // Disable scrolling
+          if(isMobile){
+            if(scrollPosition > 2000){
+              var backToSearchButton = document.querySelector('#backToSearchButton');
+              if(backToSearchButton){
+                backToSearchButton.classList.remove("opacity-100");
+                backToSearchButton.classList.add('opacity-0');
+                setTimeout(() => {
+                  backToSearchButton.style.display = 'none';
+                }, 100);
+              }
+            }
+          }
+        } else {
+          if (this.activeIndex == 0) {
+            this.el.setAttribute("data-details", "false");
+            document.body.classList.remove("no-scroll"); // Enable scrolling
+            if (isMobile) {
+              if(scrollPosition > 2000){
+                var backToSearchButton = document.querySelector(
+                  "#backToSearchButton"
+                );
+                if (backToSearchButton) {
+                  backToSearchButton.style.display = "block";
+                  setTimeout(() => {
+                    backToSearchButton.classList.add("opacity-100");
+                    backToSearchButton.classList.remove("opacity-0");
+                  }, 10);
+                }
+              }
+            }
+          }
+        }
+      }, 200);
+
+      var vehicleId = this.el.getAttribute("data-vehicle");
+      var vehicleEquipLoader = this.el.querySelector(".vehicle-equip-loader");
+      var vehicleEquipContainer = this.el.querySelector('.vehicle-equip');
+
+      if (vehicleEquipContainer && this.activeIndex == 1) {
+        if (vehicleEquipContainer.getAttribute('data-loaded') == 'false') {
+          vehicleEquipLoader.style.display = "block";
+
+          fetch(Urls['api_vehicle_details']({ vehicle_id: vehicleId }))
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`API request failed with status ${response.status}`);
+              }
+              return response.json();
+            })
+            .then(data => {
+              var bigSwiperEl = this.el.querySelector(".swipergallery-preview");
+              var bigSwiper = bigSwiperEl.swiper;
+
+              var thumbsSwiperEl = this.el.querySelector(".swipergallery-thumbs");
+              var thumbsSwiper = thumbsSwiperEl.swiper;
+
+              data.bilder.forEach(element => {
+                bigSwiper.appendSlide(`<div class="swiper-slide"><img src="${element}" loading="lazy" /><div class="swiper-lazy-preloader"></div></div>`);
+                thumbsSwiper.appendSlide(`<div class="swiper-slide"><img src="${element}" loading="lazy" class="rounded-lg" /><div class="swiper-lazy-preloader"></div></div>`);
+              });
+
+              var vehicleEquipTemplate = document.getElementById('vehicle-equip-template');
+              if (!vehicleEquipTemplate) {
+                throw new Error('Template not found');
+              }
+
+              var fragment = document.createDocumentFragment();
+              data.equip.forEach(element => {
+                var newItem = vehicleEquipTemplate.content.cloneNode(true);
+                newItem.querySelector(".title").textContent = element.title || "Unbekannt";
+
+                var newItemList = newItem.querySelector(".list");
+                if (Array.isArray(element.items)) {
+                  element.items.forEach(item => {
+                    var newItemItem = document.createElement('li');
+                    newItemItem.className = "text-sm text-gray-500";
+                    newItemItem.innerHTML = `<i class="fa-light fa-circle-check me-1 text-azf_red"></i>${item.txt || "Unbenannt"}`;
+                    newItemList.appendChild(newItemItem);
+                  });
+                }
+
+                fragment.appendChild(newItem);
+              });
+
+              vehicleEquipContainer.appendChild(fragment);
+              vehicleEquipLoader.style.display = "none";
+              vehicleEquipContainer.setAttribute('data-loaded', 'true');
+            })
+            .catch(error => {
+              console.error('Error loading vehicle equipment:', error);
+              vehicleEquipLoader.style.display = "none";
+            });
+        }
+      }
+
+      var vehicleDescLoader = this.el.querySelector(".vehicle-desc-loader");
+      var vehicleDescContainer = this.el.querySelector(".vehicle-desc");
+
+      if (vehicleDescContainer && this.activeIndex == 2) {
+        if (vehicleDescContainer.getAttribute("data-loaded") == "false") {
+          vehicleDescLoader.style.display = "block";
+
+          fetch(Urls["api_vehicle_details_description"]({ vehicle_id: vehicleId }))
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(
+                  `API request failed with status ${response.status}`
+                );
+              }
+              return response.json();
+            })
+            .then((data) => {
+              var vehicleEquipTemplate = document.getElementById(
+                "vehicle-equip-template"
+              );
+              if (!vehicleEquipTemplate) {
+                throw new Error("Template not found");
+              }
+
+              var fragment = document.createDocumentFragment();
+              data.forEach((element) => {
+                var newItem = vehicleEquipTemplate.content.cloneNode(true);
+                newItem.querySelector(".title").textContent =
+                  element.title || "Unbekannt";
+
+                var newItemList = newItem.querySelector(".list");
+                if (Array.isArray(element.items)) {
+                  element.items.forEach((item) => {
+                    var newItemItem = document.createElement("li");
+                    newItemItem.className = "text-sm text-gray-500";
+                    newItemItem.innerHTML = `${item || "Unbenannt"}`;
+                    newItemList.appendChild(newItemItem);
+                  });
+                }
+
+                fragment.appendChild(newItem);
+              });
+
+              vehicleDescContainer.appendChild(fragment);
+              vehicleDescLoader.style.display = "none";
+              vehicleDescContainer.setAttribute("data-loaded", "true");
+            })
+            .catch((error) => {
+              console.error("Error loading vehicle equipment:", error);
+              vehicleDescLoader.style.display = "none";
+            });
+        }
+      }
+
+      var vehicleLocLoader = this.el.querySelector(".vehicle-loc-loader");
+      var vehicleLocContainer = this.el.querySelector(".vehicle-loc");
+
+      if (vehicleLocContainer && this.activeIndex == 4) {
+        if (vehicleLocContainer.getAttribute("data-loaded") == "false") {
+          vehicleLocLoader.style.display = "block";
+
+          fetch(Urls["api_vehicle_details_location"]({ vehicle_id: vehicleId }))
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(
+                  `API request failed with status ${response.status}`
+                );
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log(data);
+              vehicleLocContainer.querySelector(".title").innerHTML = data.name;
+              vehicleLocContainer.querySelector(".location").innerHTML =
+                data.str.trim() + ", " + data.plz + " " + data.ort;
+
+              vehicleLocContainer
+                .querySelector(".mapsBtn")
+                .setAttribute(
+                  "href",
+                  "https://www.google.com/maps/dir//" + data.name
+                );
+              vehicleLocContainer
+                .querySelector(".telefonBtn")
+                .setAttribute("href", "tel:" + data.tel);
+
+              var map = L.map("map" + vehicleId).setView(
+                [data.latitude, data.longitude],
+                15
+              ); // Coordinates for Flensburg, adjust as necessary
+
+              L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                  attribution: "",
+                }
+              ).addTo(map);
+
+              L.marker([data.latitude, data.longitude])
+                .addTo(map)
+                .bindPopup(
+                  data.name +
+                    "<br>" +
+                    data.str +
+                    ", " +
+                    data.plz +
+                    " " +
+                    data.ort
+                )
+                .openPopup();
+
+              vehicleLocLoader.style.display = "none";
+              vehicleLocContainer.setAttribute("data-loaded", "true");
+            })
+            .catch((error) => {
+              console.error("Error loading vehicle equipment:", error);
+              vehicleLocLoader.style.display = "none";
+            });
+        }
+      }
+    });
+  });
+
+  autplay_swipers.forEach(function (swiper) {
+    var parentSwiper = document.querySelector('.' + swiper.getAttribute('data-parent')).swiper;
+
+    var autoplaySwiperGallery = new Swiper(
+      "." + swiper.getAttribute("data-target-gallery"),
+      {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: false,
+        breakpoints: {
+          // when window width is >= 320px
+          1024: {
+            slidesPerView: 6,
+          },
+        }
+      }
+    );
+    var autoplaySwiper = new Swiper("." + swiper.getAttribute("data-target"), {
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      thumbs: {
+        swiper: autoplaySwiperGallery,
+      },
+      breakpoints: {
+        // when window width is >= 320px
+        1024: {
+          slidesPerView: document
+            .querySelector("." + swiper.getAttribute("data-target"))
+            .getAttribute("data-slides-per-view"),
+          spaceBetween: 20,
+        },
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        dynamicBullets: false,
+      },
+      navigation: {
+        nextEl: ".nextBtn",
+        prevEl: ".prevBtn",
+      },
+      loop: true,
+    });
+
+    if(autoplaySwiper.el != null){
+      autoplaySwiper.el.addEventListener("touchstart", (e) => {
+        parentSwiper.allowTouchMove = false; // Disable parent swiping
+      });
+
+      autoplaySwiper.el.addEventListener("touchend", (e) => {
+        parentSwiper.allowTouchMove = true; // Re-enable parent swiping after touch ends
+      });
+
+      autoplaySwiperGallery.el.addEventListener("touchstart", (e) => {
+        parentSwiper.allowTouchMove = false; // Disable parent swiping
+      });
+
+      autoplaySwiperGallery.el.addEventListener("touchend", (e) => {
+        parentSwiper.allowTouchMove = true; // Re-enable parent swiping after touch ends
+      });
+    }
+  });
+
+  swipers_normal.forEach(function (swiper) {
+    var normalSwiper = new Swiper("." + swiper.getAttribute("data-target"), {
+      breakpoints: {
+        // when window width is >= 320px
+        1024: {
+          slidesPerView: document
+            .querySelector("." + swiper.getAttribute("data-target"))
+            .getAttribute("data-slides-per-view"),
+          spaceBetween: 20,
+        },
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        dynamicBullets: false,
+      },
+      navigation: {
+        nextEl: ".nextBtn",
+        prevEl: ".prevBtn",
+      },
+      loop: true,
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  initCustomSwiperElements();
+});

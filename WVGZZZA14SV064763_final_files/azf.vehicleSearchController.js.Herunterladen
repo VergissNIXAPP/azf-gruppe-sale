@@ -1,0 +1,252 @@
+var searchForms = document.querySelectorAll(".vehicle-search-form");
+
+searchForms.forEach(function (form) {
+  var inputs = form.querySelectorAll("input, select, textarea");
+
+  inputs.forEach(function (input) {
+    input.addEventListener("change", function () {
+      var vehicleList = document.getElementById("vehicleList");
+      vehicleList.innerHTML = "";
+      document.querySelector("#pageNumber").innerHTML = 1;
+
+      updateResultsCount();
+      if(!isMobile){
+        var pageNumber = document.getElementById("pageNumber").innerHTML;
+        loadVehicles(pageNumber);
+      }
+    });
+  });
+
+  form.addEventListener('reset', function () {
+    var vehicleList = document.getElementById("vehicleList");
+    vehicleList.innerHTML = "";
+
+    document.querySelector("#pageNumber").innerHTML = 1;
+
+    var searchForm = document.getElementById("mobileSearchForm");
+
+    var hersteller = searchForm.querySelector("#hersteller");
+    var modell = searchForm.querySelector("#modell");
+    var engine = searchForm.querySelector("#engine");
+    var getriebe = searchForm.querySelector("#getriebe");
+    var ezVon = searchForm.querySelector("#ez_von");
+    var ezBis = searchForm.querySelector("#ez_bis");
+
+    var kilometer_von = searchForm.querySelector("#kilometer_von");
+    var kilometer_bis = searchForm.querySelector("#kilometer_bis");
+    var preis_von = searchForm.querySelector("#preis_von");
+    var preis_bis = searchForm.querySelector("#preis_bis");
+
+    var inputs = [kilometer_von, kilometer_bis, preis_von, preis_bis];
+    inputs.forEach(element => {
+      element.value = "";
+    });
+
+    const selects = [hersteller, modell, engine, getriebe, ezVon, ezBis];
+
+    selects.forEach((select) => {
+      // Check if an option with value "all" exists
+      const optionAll = Array.from(select.options).find(
+        (option) => option.value === "all"
+      );
+      if (optionAll) {
+        select.value = "all";
+        // Fallback: iterate through options to manually set the selected attribute
+        Array.from(select.options).forEach((option) => {
+          option.removeAttribute("selected");
+          if (option.value === "all") option.setAttribute("selected", true);
+        });
+      }
+    });
+
+    updateResultsCount();
+    if (!isMobile) {
+      var pageNumber = document.getElementById("pageNumber").innerHTML;
+      loadVehicles(pageNumber);
+    }
+
+  })
+});
+
+async function updateResultsCount() {
+  var searchData = Object.fromEntries(
+    new FormData(document.getElementById("mobileSearchForm"))
+  );
+
+  await fetch(Urls["api_vehicle_search"](), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+    body: JSON.stringify(searchData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      var vehicleResultsFoundItem = document.querySelector(
+        "#vehicleResultsFound"
+      );
+
+      if (data.pageinfo.numFound) {
+        vehicleResultsFoundItem.innerHTML = data.pageinfo.numFound;
+        resultsFound = data.pageinfo.numFound;
+      }
+
+      if (data.facets) {
+        var searchForm = document.getElementById("mobileSearchForm");
+        var facets = data.facets;
+
+        var hersteller = searchForm.querySelector("#hersteller");
+        var modell = searchForm.querySelector("#modell");
+        var engine = searchForm.querySelector("#engine");
+        var getriebe = searchForm.querySelector("#getriebe");
+        var ezVon = searchForm.querySelector("#ez_von");
+        var ezBis = searchForm.querySelector("#ez_bis");
+
+        var hersteller_value = parseInt(hersteller.value);
+        var modell_value = parseInt(modell.value);
+        var engine_value = parseInt(engine.value);
+        var getriebe_value = parseInt(getriebe.value);
+        var ezVon_value = parseInt(ezVon.value);
+        var ezBis_value = parseInt(ezBis.value);
+
+        removeOptions(hersteller);
+        removeOptions(modell);
+        removeOptions(engine);
+        removeOptions(getriebe);
+        removeOptions(ezVon);
+        removeOptions(ezBis);
+
+        populateSelect("hersteller", "all", "Alle", "", false);
+        Object.entries(facets.hersteller).forEach(([manufacturer, values]) => {
+          if (parseInt(hersteller_value) == values[0]) {
+            populateSelect(
+              "hersteller",
+              values[0],
+              manufacturer + " (" + values[1].toString() + ")",
+              "",
+              true
+            );
+          } else {
+            populateSelect(
+              "hersteller",
+              values[0],
+              manufacturer + " (" + values[1].toString() + ")",
+              "",
+              false
+            );
+          }
+        });
+
+        populateSelect("modell", "all", "Alle", "", false);
+        Object.entries(facets.modell).forEach(([brand, values]) => {
+          if (parseInt(modell_value) == values[0]) {
+            populateSelect(
+              "modell",
+              values[0],
+              brand + " (" + values[1].toString() + ")",
+              "",
+              true
+            );
+          } else {
+            populateSelect(
+              "modell",
+              values[0],
+              brand + " (" + values[1].toString() + ")",
+              "",
+              false
+            );
+          }
+        });
+
+        populateSelect("engine", "all", "Alle", "", false);
+        Object.entries(facets.MotorG).forEach(([motor, values]) => {
+          if (parseInt(engine_value) == values[0]) {
+            populateSelect(
+              "engine",
+              values[0],
+              motor + " (" + values[1].toString() + ")",
+              "",
+              true
+            );
+          } else {
+            populateSelect(
+              "engine",
+              values[0],
+              motor + " (" + values[1].toString() + ")",
+              "",
+              false
+            );
+          }
+        });
+
+        populateSelect("getriebe", "all", "Alle", "", false);
+        Object.entries(facets.getriebe).forEach(([gearbox, values]) => {
+          if (parseInt(getriebe_value) == values[0]) {
+            populateSelect(
+              "getriebe",
+              values[0],
+              gearbox + " (" + values[1].toString() + ")",
+              "",
+              true
+            );
+          } else {
+            populateSelect(
+              "getriebe",
+              values[0],
+              gearbox + " (" + values[1].toString() + ")",
+              "",
+              false
+            );
+          }
+        });
+
+        populateSelect("ez_von", "all", "Alle", "", false);
+        Object.entries(facets.ez).forEach(([ez, values]) => {
+          if (parseInt(ezVon_value) == values[0]) {
+            populateSelect(
+              "ez_von",
+              values[0],
+              ez + " (" + values[1].toString() + ")",
+              "",
+              true
+            );
+          } else {
+            populateSelect(
+              "ez_von",
+              values[0],
+              ez + " (" + values[1].toString() + ")",
+              "",
+              false
+            );
+          }
+        });
+
+        populateSelect("ez_bis", "all", "Alle", "", false);
+        Object.entries(facets.ez).forEach(([ez, values]) => {
+          if (parseInt(ezBis_value) == values[0]) {
+            populateSelect(
+              "ez_bis",
+              values[0],
+              ez + " (" + values[1].toString() + ")",
+              "",
+              true
+            );
+          } else {
+            populateSelect(
+              "ez_bis",
+              values[0],
+              ez + " (" + values[1].toString() + ")",
+              "",
+              false
+            );
+          }
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+loadPaginations();

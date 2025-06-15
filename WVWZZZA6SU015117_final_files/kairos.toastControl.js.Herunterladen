@@ -1,0 +1,12 @@
+function showToast(toastElement) {
+  const toast = document.querySelector(toastElement);
+  toast.classList.remove("hidden");
+  setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 3000); // Hide after 3 seconds
+}
+
+function closeToast(toastElement) {
+  const toast = document.querySelector(toastElement);
+  toast.classList.add("hidden");
+}

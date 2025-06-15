@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
 <meta charset="utf-8"/>
@@ -7,47 +8,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="styles.css" rel="stylesheet"/>
 </head>
-  <!-- Manifest -->
-<link rel="manifest" href="manifest.json">
-
+<!-- Manifest -->
+<link href="manifest.json" rel="manifest"/>
 <!-- iOS WebApp Unterstützung -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="AZF">
-<link rel="apple-touch-icon" href="icons/icon-180.png">
-
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="default" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="AZF" name="apple-mobile-web-app-title"/>
+<link href="icons/icon-180.png" rel="apple-touch-icon"/>
 <!-- Farben -->
-<meta name="theme-color" content="#d72638">
-<meta name="background-color" content="#ffffff">
+<meta content="#d72638" name="theme-color"/>
+<meta content="#ffffff" name="background-color"/>
 <body>
 <header>
-  <div class="branding-inside-header">
-    <div class="azf-logo">
-      <img src="logos/AZF-Logo-4c_1_WHITE.png" alt="AZF Logo" /><div class="azf-logo">
+<div class="branding-inside-header">
+<div class="azf-logo">
+<img alt="AZF Logo" src="logos/AZF-Logo-4c_1_WHITE.png"/><div class="azf-logo">
 </div>
-    <div class="brand-logos">
-      <img src="logos/VW-Logo.png" alt="VW">
-      <div class="divider"></div>
-      <img src="logos/Audi-Logo.png" alt="Audi">
-      <div class="divider"></div>
-      <img src="logos/VWN-Logo.png" alt="VW Nutzfahrzeuge">
-      <div class="divider"></div>
-      <img src="logos/SEAT-Logo.png" alt="SEAT">
-      <div class="divider"></div>
-      <img src="logos/CUPRA-Logo.png" alt="CUPRA">
-      <div class="divider"></div>
-      <img src="logos/Skoda-Logo.png" alt="Skoda">
-      <div class="divider"></div>
-      <img src="logos/Maxus-Logo.png" alt="Maxus">
-    </div>
-  </div>
-<br>
+<div class="brand-logos">
+<img alt="VW" src="logos/VW-Logo.png"/>
+<div class="divider"></div>
+<img alt="Audi" src="logos/Audi-Logo.png"/>
+<div class="divider"></div>
+<img alt="VW Nutzfahrzeuge" src="logos/VWN-Logo.png"/>
+<div class="divider"></div>
+<img alt="SEAT" src="logos/SEAT-Logo.png"/>
+<div class="divider"></div>
+<img alt="CUPRA" src="logos/CUPRA-Logo.png"/>
+<div class="divider"></div>
+<img alt="Skoda" src="logos/Skoda-Logo.png"/>
+<div class="divider"></div>
+<img alt="Maxus" src="logos/Maxus-Logo.png"/>
+</div>
+</div>
+<br/>
 <div class="header-text">
- <h1>Traumauto finden</h1>
-   <p>&nbsp;Mobilität bei uns erleben</p>
+<h1>Traumauto finden</h1>
+<p> Mobilität bei uns erleben</p>
 <div class="mehr-erfahren-wrapper" style="margin-top: 1rem;">
-  <span class="mb-3 animate-pulse"
-        style="
+<span class="mb-3 animate-pulse" style="
           display: inline-block;
           animation-duration: 1s;
           font-size: 2rem;
@@ -56,8 +54,8 @@
         ">
     Jetzt mehr erfahren
   </span>
-  <br/>
-  <span style="
+<br>
+<span style="
         font-size: 2rem;
         display: inline-block;
         color: white;
@@ -65,9 +63,9 @@
       ">
     ⌄
   </span>
+</br></div>
 </div>
-</div>
-</header>
+</div></header>
 <script>
   // Weiterleiten zur Login-Seite, wenn nicht eingeloggt
   if (localStorage.getItem('isLoggedIn') !== 'true') {
@@ -96,82 +94,138 @@
 </div>
 </div>
 <div id="geheimmenue-wrapper" style="display:none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); background: white; padding: 2rem; border: 2px solid #d72638; border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.4); z-index: 9999;">
-  <button onclick="document.getElementById('geheimmenue-wrapper').style.display='none'" 
-          style="position: absolute; top: 8px; right: 12px; background: transparent; border: none; font-size: 1.5rem; cursor: pointer;">✖</button>
-  <h3 style="margin-top: 0;">🔒 Internes Menü</h3>
-  <div id="passwort-abfrage">
-    <p>Bitte Passwort eingeben:</p>
-    <input type="password" id="passwort-eingabe" placeholder="Passwort" style="padding: 0.4rem; width: 100%;">
-    <button onclick="pruefePasswort()" style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #d72638; color: white; border: none; cursor: pointer;">Anzeigen</button>
-  </div>
-  <div id="geheime-infos" style="display:none; margin-top: 1rem;">
-    <p><strong>📊 Nachlassdetails:</strong></p>
-    <ul style="list-style-type: disc; padding-left: 1.2rem;">
-      <li>Golf GTI: 13,8% + Q2 Prämie 5% </li>
-      <li>Taigo R-Line: 13,6% + Q2 Prämie 5%</li>
-       <li>Golf: 13,2% + Q2 Prämie (3%, 4%, 5%)</li>
-      <li>T-Roc: 12% + Q2 Prämie (3%, 4%, 5%)</li>
-      <li>Polo: 12% + Q2 Prämie (3%, 4%, 5%)</li>
-    </ul>
-  </div>
+<h3 style="margin-top: 0;">🔒 Internes Menü</h3>
+<div id="passwort-abfrage">
+<p>Bitte Passwort eingeben:</p>
+<input id="passwort-eingabe" placeholder="Passwort" style="padding: 0.4rem; width: 100%;" type="password"/>
+<button onclick="pruefePasswort()" style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #d72638; color: white; border: none; cursor: pointer;">Anzeigen</button>
 </div>
+<div id="geheime-infos" style="display:none; margin-top: 1rem;">
+<p><strong>📊 Nachlassdetails:</strong></p>
+<ul style="list-style-type: disc; padding-left: 1.2rem;">
+<li>Golf GTI: -13,8% + Q2 Prämie 5% </li>
+<li>Taigo R-Line: 13,6% + Q2 Prämie 5%</li>
+<li>Golf: 13,2% + Q2 Prämie (3%, 4%, 5%)</li>
+<li>T-Roc: 12% + Q2 Prämie (3%, 4%, 5%)</li>
+<li>Polo: 12% + Q2 Prämie (3%, 4%, 5%)</li>
+</ul>
+</div>
+</div>
+
+<!-- Fahrzeug-Detail-Modal -->
+<div class="detail-modal" id="fahrzeugDetails">
+<div class="detail-content">
+<button class="close-button" onclick="closeDetailModal()">✖</button>
+<h2 id="detail-titel">Fahrzeugtitel</h2>
+<img alt="Fahrzeugbild" id="detail-bild" src="" style="max-width: 100%; border-radius: 1rem; margin-bottom: 1rem;"/>
+<p id="detail-ausstattung">Ausstattungen...</p>
+<p id="detail-leasing">Leasingdetails...</p>
+</div>
+</div>
+<script>
+  function openDetailModal(titel, bild, ausstattung, leasing) {
+    document.getElementById('detail-titel').innerText = titel;
+    document.getElementById('detail-bild').src = bild;
+    document.getElementById('detail-ausstattung').innerHTML = ausstattung;
+    document.getElementById('detail-leasing').innerHTML = leasing;
+    document.getElementById('fahrzeugDetails').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDetailModal() {
+    document.getElementById('fahrzeugDetails').style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+</script>
+<style>
+.detail-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+.detail-content {
+  background: white;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  position: relative;
+  font-family: 'Barlow', sans-serif;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+</style>
 </body>
-  <br>
-  <br>
+<br/>
+<br/>
 <h2 class="card-section-title" style="
   text-align: center;
   font-size: 2.4rem;
   font-weight: 400;
   font-family: 'Barlow', sans-serif;">
-  Angebote des Monats<br> Einzelstücke zu Sonderkonditionen
+  Angebote des Monats<br/> Einzelstücke zu Sonderkonditionen
 </h2>
- <br>  
+<br/>
 <section class="grid" style="justify-content: center;">
-  <div class="card" style="max-width: 400px; margin: 0 auto;">
-    <img alt="VW Golf GTI Einzelstück" src="92965.jpg" />
-    <h2 class="card-title-above">VW Golf GTI 2.0 l TSI DSG<br>(265 PS)</h2>
-    <div class="card-content" style="text-align: center;">
-      <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
-      <div class="ahk-hinweis">🛻 Sportfahrwerk</div>
-      <div class="ahk-hinweis">🔊 Harman/Kardon Soundsystem</div>
-      <div class="ahk-hinweis">🔦 IQ.Light Matrix-LED</div>
-      <div class="ahk-hinweis">🧾 Einzelstück – nur 1x verfügbar!</div>
-      <div class="leasing">🔥 Nur 399 €/Monat</div>
-      <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
-      <div class="details">
-        Laufzeit: 48 Monate<br/>
-        Anzahlung: 0 €<br/>
-        Jahresfahrleistung: 10.000 km<br/>
-        Effektiver Jahreszins: 4,60 %<br/>
-        Gesamtbetrag: 20.042,00 €<br/>
+<div class="card" onclick="window.location.href='WVWZZZA1ZXY123456_final.html'">
+<img alt="VW Golf GTI Einzelstück" src="92965.jpg">
+<h2 class="card-title-above">VW Golf GTI 2.0 l TSI DSG<br/>(265 PS)</h2>
+<div class="card-content" style="text-align: center;">
+<div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
+<div class="ahk-hinweis">🛻 Sportfahrwerk</div>
+<div class="ahk-hinweis">🔊 Harman/Kardon Soundsystem</div>
+<div class="ahk-hinweis">🔦 IQ.Light Matrix-LED</div>
+<div class="ahk-hinweis">🧾 Einzelstück – nur 1x verfügbar!</div>
+<div class="leasing">🔥 Nur 399 €/Monat</div>
+<p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
+<div class="details">
+        Laufzeit: 48 Monate<br>
+        Anzahlung: 0 €<br>
+        Jahresfahrleistung: 10.000 km<br>
+        Effektiver Jahreszins: 4,60 %<br>
+        Gesamtbetrag: 20.042,00 €<br>
         Fahrgestell-Nr.: WVWZZZA1ZXY123456<br/>
-        <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" style="max-width: 400px; margin: 0 auto;">
-    <img alt="VW Taigo R-Line 1.5 l TSI OPF (150 PS)" src="93511.jpg" />
-    <h2 class="card-title-above">VW Taigo R-Line 1.5 l TSI DSG<br>(150 PS)</h2>
-    <div class="card-content" style="text-align: center;">
-      <div class="ahk-hinweis">🟢 Farbe: Visual Green</div>
-      <div class="ahk-hinweis">⬛ Black Style Paket</div>
-      <div class="ahk-hinweis">🛻 Anhängevorrichtung</div>
-      <div class="ahk-hinweis">📷 Rückfahrkamera</div>
-      <div class="ahk-hinweis">🧾 Einzelstück – nur 1x verfügbar!</div>
-      <div class="leasing">🔥 Nur 285 €/Monat</div>
-      <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
-      <div class="details">
-        Laufzeit: 48 Monate<br/>
+<button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
+</br></br></br></br></br></div>
+</div>
+</div>
+<div class="card" onclick="window.location.href='WVWZZZA1XSU014228_final.html'">
+<img alt="VW Taigo R-Line 1.5 l TSI OPF (150 PS)" src="93511.jpg">
+<h2 class="card-title-above">VW Taigo R-Line 1.5 l TSI DSG<br/>(150 PS)</h2>
+<div class="card-content" style="text-align: center;">
+<div class="ahk-hinweis">🟢 Farbe: Visual Green</div>
+<div class="ahk-hinweis">⬛ Black Style Paket</div>
+<div class="ahk-hinweis">🛻 Anhängevorrichtung</div>
+<div class="ahk-hinweis">📷 Rückfahrkamera</div>
+<div class="ahk-hinweis">🧾 Einzelstück – nur 1x verfügbar!</div>
+<div class="leasing">🔥 Nur 285 €/Monat</div>
+<p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
+<div class="details">
+        Laufzeit: 48 Monate<br>
         Anzahlung: 0 €<br/>
         Jahresfahrleistung: 10.000 km<br/>
         Effektiver Jahreszins: 3,73 %<br/>
         Gesamtbetrag: 13.578,00 €<br/>
         Fahrgestell-Nr.: WVWZZZA1XSU014228<br/>
-        <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-      </div>
-    </div>
-  </div>
+<button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
+</br></br></br></br></br></div>
+</div>
+</div>
 </section>
 <h2 class="card-section-title" style="
   text-align: center;
@@ -181,8 +235,8 @@
   Golf Angebote
 </h2>
 <section class="grid">
-<div class="card">
-<img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93491.jpg"/><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br>(150 PS)</h2>
+<div class="card" onclick="window.location.href='WVWZZZCD3SW189369_final.html'">
+<img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93491.jpg"><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White</div>
 <div class="ahk-hinweis">🧭 ACC Abstandstempomat</div>
@@ -193,7 +247,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
        Laufzeit: 48 Monate
-       <br/>
+       <br>
        Anzahlung: 0 €
        <br/>
        Jahresfahrleistung: 10.000 km
@@ -204,7 +258,7 @@
         <br/>
        Fahrgestell-Nr.:  WVWZZZCD3SW189369
       <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
         Weitere Leasingraten anzeigen
@@ -264,14 +318,13 @@
           </li>
 <li>
            20.000 km: 377 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
-<img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93639.jpg"/><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br>(150 PS)</h2>
+</div>
+
+<div class="card" onclick="window.location.href='WVWZZZCD6SW211395_final.html'">
+<img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93639.jpg"><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Oyster Silver</div>
 <div class="ahk-hinweis">🛞 Sommer und Winterräder</div>
@@ -282,7 +335,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
        Laufzeit: 48 Monate
-       <br/>
+       <br>
        Anzahlung: 0 €
        <br/>
        Jahresfahrleistung: 10.000 km
@@ -293,7 +346,7 @@
         <br/>
        Fahrgestell-Nr.: WVWZZZCD6SW211395
       <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
         Weitere Leasingraten anzeigen
@@ -353,14 +406,12 @@
           </li>
 <li>
            20.000 km: 380 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
-<img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93492.jpg"/><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br>(150 PS)</h2>
+</div>
+<div class="card" onclick="window.location.href='WVWZZZCD9SW191255_final.html'">
+<img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93492.jpg"><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Grenadillschwarz</div>
 <div class="ahk-hinweis">🛞 Sommer und Winterräder</div>
@@ -371,7 +422,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
       Laufzeit: 48 Monate
-      <br/>
+      <br>
       Anzahlung: 0 €
       <br/>
       Jahresfahrleistung: 10.000 km
@@ -382,7 +433,7 @@
        <br/>
       Fahrgestell-Nr.:  WVWZZZCD9SW191255
      <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
        Weitere Leasingraten anzeigen
@@ -442,14 +493,12 @@
          </li>
 <li>
           20.000 km: 381 €/Monat
-         </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
-<img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93640.jpg"/><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br>(150 PS)</h2>
+</div>
+<div class="card" onclick="window.location.href='WVWZZZCD4SW186836_final.html'">
+<img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93640.jpg"><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">🔵 Farbe: Crystal Ice Blue</div>
 <div class="ahk-hinweis">🛞 Sommer und Winterräder</div>
@@ -460,7 +509,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
        Laufzeit: 48 Monate
-       <br/>
+       <br>
        Anzahlung: 0 €
        <br/>
        Jahresfahrleistung: 10.000 km
@@ -471,7 +520,7 @@
         <br/>
        Fahrgestell-Nr.: WVWZZZCD4SW186836
       <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
         Weitere Leasingraten anzeigen
@@ -531,14 +580,11 @@
           </li>
 <li>
            20.000 km: 386 €/Monat
-           </li>
- </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div></section>
+</div>
+</section>
 <h2 class="card-section-title" style="
   text-align: center;
   font-size: 2.3rem;
@@ -547,8 +593,8 @@
   T-Roc Angebote
 </h2>
 <section class="grid">
-<div class="card">
-<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS)  6-Gang" src="94224.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br>(150 PS)</h2>
+<div class="card" onclick="window.location.href='WVGZZZA17SV085445_final.html'">
+<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS)  6-Gang" src="94224.jpg"><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
 <div class="ahk-hinweis">🧭 ACC Abstandstempomat</div>
@@ -559,7 +605,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
        Laufzeit: 48 Monate
-       <br/>
+       <br>
        Anzahlung: 0 €
        <br/>
        Jahresfahrleistung: 10.000 km
@@ -570,7 +616,7 @@
         <br/>
        Fahrgestell-Nr.: WVGZZZA17SV085445
       <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
         Weitere Leasingraten anzeigen
@@ -630,14 +676,12 @@
           </li>
 <li>
            20.000 km: 310 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
-<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94224.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br>(150 PS)</h2>
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA17SV085218_final.html'">
+<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94224.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
 <div class="ahk-hinweis">🧭ACC Abstandstempomat</div>
@@ -648,7 +692,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
        Laufzeit: 48 Monate
-       <br/>
+       <br>
        Anzahlung: 0 €
        <br/>
        Jahresfahrleistung: 10.000 km
@@ -659,7 +703,7 @@
         <br/>
        Fahrgestell-Nr.: WVGZZZA17SV085218
       <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
         Weitere Leasingraten anzeigen
@@ -719,14 +763,12 @@
           </li>
 <li>
            20.000 km: 310 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
-<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94163.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br>(150 PS)</h2>
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA18SV084188_final.html'">
+<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94163.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pyritsilber/Schwarz</div>
 <div class="ahk-hinweis">🧭 ACC Abstandstempomat</div>
@@ -737,7 +779,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
       Laufzeit: 48 Monate
-      <br/>
+      <br>
       Anzahlung: 0 €
       <br/>
       Jahresfahrleistung: 10.000 km
@@ -748,7 +790,7 @@
        <br/>
       Fahrgestell-Nr.: WVGZZZA18SV084188
      <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
        Weitere Leasingraten anzeigen
@@ -808,14 +850,12 @@
          </li>
 <li>
           20.000 km: 312 €/Monat
-         </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
-<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94224.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br>(150 PS)</h2>
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA10SV094195_final.html'">
+<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94224.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
 <div class="ahk-hinweis">🛻 Anhängevorrichtung</div>
@@ -827,7 +867,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
        Laufzeit: 48 Monate
-       <br/>
+       <br>
        Anzahlung: 0 €
        <br/>
        Jahresfahrleistung: 10.000 km
@@ -838,7 +878,7 @@
         <br/>
        Fahrgestell-Nr.: WVGZZZA10SV094195
       <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
         Weitere Leasingraten anzeigen
@@ -898,14 +938,12 @@
           </li>
 <li>
            20.000 km: 331 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
-<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94223.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br>(150 PS)</h2>
+</div>
+<div class="card" onclick="window.location.href='WVWZZZA12SV096191_final.html'">
+<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94223.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pyritsilber/Schwarz</div>
 <div class="ahk-hinweis">🛻 Anhängevorrichtung</div>
@@ -917,7 +955,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
        Laufzeit: 48 Monate
-       <br/>
+       <br>
        Anzahlung: 0 €
        <br/>
        Jahresfahrleistung: 10.000 km
@@ -928,7 +966,7 @@
         <br/>
        Fahrgestell-Nr.: WVWZZZA12SV096191
       <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
         Weitere Leasingraten anzeigen
@@ -988,14 +1026,12 @@
           </li>
 <li>
            20.000 km: 334 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
-<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94163.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br>(150 PS)</h2>
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA13SV096233_final.html'">
+<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94163.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pyritsilber/Schwarz</div>
 <div class="ahk-hinweis">🛻 Anhängevorrichtung</div>
@@ -1007,7 +1043,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
        Laufzeit: 48 Monate
-       <br/>
+       <br>
        Anzahlung: 0 €
        <br/>
        Jahresfahrleistung: 10.000 km
@@ -1018,7 +1054,7 @@
         <br/>
        Fahrgestell-Nr.: WVGZZZA13SV096233
       <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
         Weitere Leasingraten anzeigen
@@ -1078,14 +1114,12 @@
           </li>
 <li>
            20.000 km: 334 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
-<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94221.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br>(150 PS)</h2>
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA11SV093881_final.html'">
+<img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94221.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Deep Black</div>
 <div class="ahk-hinweis">🛻 Anhängevorrichtung</div>
@@ -1097,7 +1131,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
        Laufzeit: 48 Monate
-       <br/>
+       <br>
        Anzahlung: 0 €
        <br/>
        Jahresfahrleistung: 10.000 km
@@ -1108,7 +1142,7 @@
         <br/>
        Fahrgestell-Nr.: WVGZZZA11SV093881
       <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
         Weitere Leasingraten anzeigen
@@ -1168,13 +1202,11 @@
           </li>
 <li>
            20.000 km: 334 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA19SV085298_final.html'">
 <img alt="VW T-Roc R-Line 1.5 l TSI OPF (150 PS) 7-Gang-DSG" src="93791.jpg"/><h2 class="card-title-above">VW T-Roc R-Line 1.5 l TSI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Indiumgrau/Schwarz</div>
@@ -1258,13 +1290,11 @@
           </li>
 <li>
            20.000 km: 371 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA16SV086778_final.html'">
 <img alt="VW T-Roc R-Line 1.5 l TSI OPF (150 PS) 7-Gang-DSG" src="94276.jpg"/><h2 class="card-title-above">VW T-Roc R-Line 1.5 l TSI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">🔵 Farbe: Lapiz Blue</div>
@@ -1348,14 +1378,12 @@
           </li>
 <li>
            20.000 km: 372 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
-<img alt="VW T-Roc Style 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="93928.jpg"/><h2 class="card-title-above">VW T-Roc Style 2.0 l TDI 7-Gang<br>DSG (150 PS)</h2>
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA17SV105872_final.html'">
+<img alt="VW T-Roc Style 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="93928.jpg"/><h2 class="card-title-above">VW T-Roc Style 2.0 l TDI 7-Gang<br/>DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Deep Black</div>
 <div class="ahk-hinweis">🛻 Anhängevorrichtung</div>
@@ -1367,7 +1395,7 @@
 <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
 <div class="details">
       Laufzeit: 48 Monate
-      <br/>
+      <br>
       Anzahlung: 0 €
       <br/>
       Jahresfahrleistung: 10.000 km
@@ -1378,7 +1406,7 @@
        <br/>
       Fahrgestell-Nr.: WVGZZZA17SV105872
      <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-</div>
+</br></div>
 <details style="margin-top: 1rem;">
 <summary>
        Weitere Leasingraten anzeigen
@@ -1438,13 +1466,11 @@
          </li>
 <li>
           20.000 km: 383 €/Monat
-         </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA16SV142475_final.html'">
 <img alt="VW T-Roc R-Line 2.0 TDI SCR (150 PS) 7-Gang-DSG" src="94175.jpg"/><h2 class="card-title-above">VW T-Roc R-Line 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
@@ -1528,13 +1554,11 @@
           </li>
 <li>
            20.000 km: 394 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
+</div>
+</div><div class="card" onclick="window.location.href='WVGZZZA14SV064763_final.html'">
 <img alt="VW T-Roc R-Line 1.5 l TSI OPF (150 PS) 7-Gang-DSG" src="93791.jpg"/><h2 class="card-title-above">VW T-Roc R-Line 1.5 l TSI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Indiumgrau/Schwarz</div>
@@ -1618,13 +1642,11 @@
          </li>
 <li>
           20.000 km: 403 €/Monat
-         </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA13SV135371_final.html'">
 <img alt="VW T-Roc Style 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="94172.jpg"/><h2 class="card-title-above">VW T-Roc Style 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pyritsilber/Schwarz</div>
@@ -1709,12 +1731,11 @@
 <li>
            20.000 km: 406 €/Monat
           </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA14SV135265_final.html'">
 <img alt="VW T-Roc Style 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="94171.jpg"/><h2 class="card-title-above">VW T-Roc Style 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Indiumgrau/Schwarz</div>
@@ -1798,13 +1819,11 @@
           </li>
 <li>
            20.000 km: 406 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
+</div>
+</div><div class="card" onclick="window.location.href='WVGZZZA14SV107711_final.html'">
 <img alt="VW T-Roc GOAL 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="94167.jpg"/><h2 class="card-title-above">VW T-Roc GOAL 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
@@ -1888,13 +1907,11 @@
          </li>
 <li>
           20.000 km: 414 €/Monat
-         </li>
-</ul>
-</li>
-</ul>
-</details>
+        </li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA14SV107952_final.html'">
 <img alt="VW T-Roc GOAL 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="94169.jpg"/><h2 class="card-title-above">VW T-Roc GOAL 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pyritsilber/Schwarz</div>
@@ -1978,14 +1995,11 @@
           </li>
 <li>
            20.000 km: 418 €/Monat
-     </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
 </div>
-<div class="card">
+<div class="card" onclick="window.location.href='WVGZZZA12SV139864_final.html'">
 <img alt="VW T-Roc R-Line 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="94176.jpg"/><h2 class="card-title-above">VW T-Roc R-Line 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Deep Black</div>
@@ -2069,13 +2083,11 @@
           </li>
 <li>
            20.000 km: 421 €/Monat
-          </li>
-</ul>
-</li>
-</ul>
-</details>
+</li></ul></li>
+</ul></details>
 </div>
-</div><div class="card">
+</div>
+<div class="card" onclick="window.location.href='WVGZZZA15SV143018_final.html'">
 <img alt="VW T-Roc R 2.0 l TSI OPF 7-Gang DSG (300 PS)" src="94174.jpg"/><h2 class="card-title-above">VW T-Roc R 2.0 l TSI 7-Gang DSG (300 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">🔵 Farbe: Lapiz Blue</div>
@@ -2160,10 +2172,10 @@
 <li>
            20.000 km: 476 €/Monat
            </li>
- </li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
+
 </details>
 </div>
 </div></section>
@@ -2175,15 +2187,14 @@
   Polo Angebote
 </h2>
 <section class="grid">
-
-<div class="card">
-  <img alt="VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)" src="93448.jpg"/>
-  <h2 class="card-title-above">VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)</h2>
-  <div class="card-content">
-    <div class="ahk-hinweis">⚫ Farbe: Deep Black Perleffekt</div><div class="ahk-hinweis">🧭 ACC Abstandstempomat</div><div class="ahk-hinweis">🅿️ Einparkhilfe</div><div class="ahk-hinweis">♨️ Sitzheizung</div><div class="ahk-hinweis">🧾 und viele weitere Ausstattungen!</div>
-    <div class="leasing">🔥 Nur 252 €/Monat</div>
-    <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
-    <div class="details">
+<div class="card" onclick="window.location.href='WVWZZZA5RU159560_final.html'">
+<img alt="VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)" src="93448.jpg"/>
+<h2 class="card-title-above">VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)</h2>
+<div class="card-content">
+<div class="ahk-hinweis">⚫ Farbe: Deep Black Perleffekt</div><div class="ahk-hinweis">🧭 ACC Abstandstempomat</div><div class="ahk-hinweis">🅿️ Einparkhilfe</div><div class="ahk-hinweis">♨️ Sitzheizung</div><div class="ahk-hinweis">🧾 und viele weitere Ausstattungen!</div>
+<div class="leasing">🔥 Nur 252 €/Monat</div>
+<p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
+<div class="details">
        Laufzeit: 48 Monate<br/>
        Anzahlung: 0 €<br/>
        Jahresfahrleistung: 10.000 km<br/>
@@ -2191,25 +2202,24 @@
        Gesamtbetrag: 12986,00 €<br/>
        Fahrgestell-Nr.: WVWZZZA5RU159560
        <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-    </div>
-    <details style="margin-top: 1rem;">
-      <summary>Weitere Leasingraten anzeigen</summary>
-      <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
-             <li>24 Monate:<ul><li>10.000 km: 281 €/Monat</li><li>12.500 km: 293 €/Monat</li><li>15.000 km: 305 €/Monat</li><li>17.500 km: 316 €/Monat</li><li>20.000 km: 328 €/Monat</li></ul></li><li>36 Monate:<ul><li>10.000 km: 264 €/Monat</li><li>12.500 km: 274 €/Monat</li><li>15.000 km: 284 €/Monat</li><li>17.500 km: 294 €/Monat</li><li>20.000 km: 304 €/Monat</li></ul></li>
-48 Monate:<ul><li>10.000 km: 252 €/Monat</li><li>12.500 km: 261 €/Monat</li><li>15.000 km: 271 €/Monat</li><li>17.500 km: 280 €/Monat</li><li>20.000 km: 289 €/Monat</li></ul></li>
-      </ul>
-    </details>
-  </div>
 </div>
-
-<div class="card">
-  <img alt="VW Polo GOAL 1,0 l TSI 5-Gang (95 PS)" src="93524.jpg"/>
-  <h2 class="card-title-above">VW Polo GOAL 1,0 l TSI 5-Gang (95 PS)</h2>
-  <div class="card-content">
-    <div class="ahk-hinweis">🔴 Farbe: Kings Red Metallic</div><div class="ahk-hinweis">🛻 Anhängevorrichtung</div><div class="ahk-hinweis">🅿️ Einparkhilfe</div><div class="ahk-hinweis">🛞 Ganzjahresreifen</div><div class="ahk-hinweis">🧾 und viele weitere Ausstattungen!</div>
-    <div class="leasing">🔥 Nur 222 €/Monat</div>
-    <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
-    <div class="details">
+<details style="margin-top: 1rem;">
+<summary>Weitere Leasingraten anzeigen</summary>
+<ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
+<li>24 Monate:<ul><li>10.000 km: 281 €/Monat</li><li>12.500 km: 293 €/Monat</li><li>15.000 km: 305 €/Monat</li><li>17.500 km: 316 €/Monat</li><li>20.000 km: 328 €/Monat</li></ul></li><li>36 Monate:<ul><li>10.000 km: 264 €/Monat</li><li>12.500 km: 274 €/Monat</li><li>15.000 km: 284 €/Monat</li><li>17.500 km: 294 €/Monat</li><li>20.000 km: 304 €/Monat</li></ul></li>
+48 Monate:<ul><li>10.000 km: 252 €/Monat</li><li>12.500 km: 261 €/Monat</li><li>15.000 km: 271 €/Monat</li><li>17.500 km: 280 €/Monat</li><li>20.000 km: 289 €/Monat</li></ul>
+</ul>
+</details>
+</div>
+</div>
+<div class="card" onclick="window.location.href='WVWZZZA1XSU014228_final.html'">
+<img alt="VW Polo GOAL 1,0 l TSI 5-Gang (95 PS)" src="93524.jpg"/>
+<h2 class="card-title-above">VW Polo GOAL 1,0 l TSI 5-Gang (95 PS)</h2>
+<div class="card-content">
+<div class="ahk-hinweis">🔴 Farbe: Kings Red Metallic</div><div class="ahk-hinweis">🛻 Anhängevorrichtung</div><div class="ahk-hinweis">🅿️ Einparkhilfe</div><div class="ahk-hinweis">🛞 Ganzjahresreifen</div><div class="ahk-hinweis">🧾 und viele weitere Ausstattungen!</div>
+<div class="leasing">🔥 Nur 222 €/Monat</div>
+<p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
+<div class="details">
        Laufzeit: 48 Monate<br/>
        Anzahlung: 0 €<br/>
        Jahresfahrleistung: 10.000 km<br/>
@@ -2217,49 +2227,23 @@
        Gesamtbetrag: 11546,00 €<br/>
        Fahrgestell-Nr.: WVWZZZA1XSU014228
        <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-    </div>
-    <details style="margin-top: 1rem;">
-      <summary>Weitere Leasingraten anzeigen</summary>
-      <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
-      <li>24 Monate:<ul><li>10.000 km: 253 €/Monat</li><li>12.500 km: 263 €/Monat</li><li>15.000 km: 273 €/Monat</li><li>17.500 km: 283 €/Monat</li><li>20.000 km: 293 €/Monat</li></ul></li><li>36 Monate:<ul><li>10.000 km: 234 €/Monat</li><li>12.500 km: 243 €/Monat</li><li>15.000 km: 252 €/Monat</li><li>17.500 km: 260 €/Monat</li><li>20.000 km: 269 €/Monat</li></ul></li><li>48 Monate:<ul><li>10.000 km: 222 €/Monat</li><li>12.500 km: 230 €/Monat</li><li>15.000 km: 238 €/Monat</li><li>17.500 km: 246 €/Monat</li><li>20.000 km: 254 €/Monat</li></ul></li>
-      </ul>
-    </details>
-  </div>
 </div>
-  
-<div class="card">
-  <img alt="VW Polo Style 1,0 l TSI 7-Gang DSG (116 PS)" src="93525.jpg"/>
-  <h2 class="card-title-above">VW Polo Style 1,0 l TSI 7-Gang DSG (116 PS)</h2>
-  <div class="card-content">
-    <div class="ahk-hinweis">🟣 Farbe: Rauchgrau Metallic</div><div class="ahk-hinweis">🧭 ACC Abstandstempomat</div><div class="ahk-hinweis">🅿️ Einparkhilfe</div><div class="ahk-hinweis">🛞 Ganzjahresreifen</div><div class="ahk-hinweis">🧾 und viele weitere Ausstattungen!</div>
-    <div class="leasing">🔥 Nur 251 €/Monat</div>
-    <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
-    <div class="details">
-       Laufzeit: 48 Monate<br/>
-       Anzahlung: 0 €<br/>
-       Jahresfahrleistung: 10.000 km<br/>
-       Effektiver Jahreszins: 3,70 %<br/>
-       Gesamtbetrag: 12938,00 €<br/>
-       Fahrgestell-Nr.: WVWZZZA6WSU016297
-       <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-    </div>
-    <details style="margin-top: 1rem;">
-      <summary>Weitere Leasingraten anzeigen</summary>
-      <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
-        <li>24 Monate:<ul><li>10.000 km: 265 €/Monat</li><li>12.500 km: 276 €/Monat</li><li>15.000 km: 287 €/Monat</li><li>17.500 km: 297 €/Monat</li><li>20.000 km: 308 €/Monat</li></ul></li><li>36 Monate:<ul><li>10.000 km: 246 €/Monat</li><li>12.500 km: 255 €/Monat</li><li>15.000 km: 264 €/Monat</li><li>17.500 km: 273 €/Monat</li><li>20.000 km: 282 €/Monat</li></ul></li><li>48 Monate:<ul><li>10.000 km: 233 €/Monat</li><li>12.500 km: 242 €/Monat</li><li>15.000 km: 250 €/Monat</li><li>17.500 km: 258 €/Monat</li><li>20.000 km: 266 €/Monat</li></ul></li>
-      </ul>
-    </details>
-  </div>
+<details style="margin-top: 1rem;">
+<summary>Weitere Leasingraten anzeigen</summary>
+<ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
+<li>24 Monate:<ul><li>10.000 km: 253 €/Monat</li><li>12.500 km: 263 €/Monat</li><li>15.000 km: 273 €/Monat</li><li>17.500 km: 283 €/Monat</li><li>20.000 km: 293 €/Monat</li></ul></li><li>36 Monate:<ul><li>10.000 km: 234 €/Monat</li><li>12.500 km: 243 €/Monat</li><li>15.000 km: 252 €/Monat</li><li>17.500 km: 260 €/Monat</li><li>20.000 km: 269 €/Monat</li></ul></li><li>48 Monate:<ul><li>10.000 km: 222 €/Monat</li><li>12.500 km: 230 €/Monat</li><li>15.000 km: 238 €/Monat</li><li>17.500 km: 246 €/Monat</li><li>20.000 km: 254 €/Monat</li></ul></li>
+</ul>
+</details>
 </div>
-
-<div class="card">
-  <img alt="VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)" src="93526.jpg"/>
-  <h2 class="card-title-above">VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)</h2>
-  <div class="card-content">
-    <div class="ahk-hinweis">🔵 Farbe: Reef Blue Metallic</div><div class="ahk-hinweis">🧭 ACC Abstandstempomat</div><div class="ahk-hinweis">🅿️ Einparkhilfe</div><div class="ahk-hinweis">🛞 Ganzjahresreifen</div><div class="ahk-hinweis">🧾 und viele weitere Ausstattungen!</div>
-    <div class="leasing">🔥 Nur 242 €/Monat</div>
-    <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
-    <div class="details">
+</div>
+<div class="card" onclick="window.location.href='WVWZZZA6SU015117_final.html'">
+<img alt="VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)" src="93526.jpg"/>
+<h2 class="card-title-above">VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)</h2>
+<div class="card-content">
+<div class="ahk-hinweis">🔵 Farbe: Reef Blue Metallic</div><div class="ahk-hinweis">🧭 ACC Abstandstempomat</div><div class="ahk-hinweis">🅿️ Einparkhilfe</div><div class="ahk-hinweis">🛞 Ganzjahresreifen</div><div class="ahk-hinweis">🧾 und viele weitere Ausstattungen!</div>
+<div class="leasing">🔥 Nur 242 €/Monat</div>
+<p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
+<div class="details">
        Laufzeit: 48 Monate<br/>
        Anzahlung: 0 €<br/>
        Jahresfahrleistung: 10.000 km<br/>
@@ -2267,23 +2251,22 @@
        Gesamtbetrag: 12506,00 €<br/>
        Fahrgestell-Nr.: WVWZZZA6SU015117
        <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-    </div>
-    <details style="margin-top: 1rem;">
-      <summary>Weitere Leasingraten anzeigen</summary>
-      <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
-      <li>24 Monate:<ul><li>10.000 km: 270 €/Monat</li><li>12.500 km: 281 €/Monat</li><li>15.000 km: 293 €/Monat</li><li>17.500 km: 304 €/Monat</li><li>20.000 km: 315 €/Monat</li></ul></li><li>36 Monate:<ul><li>10.000 km: 254 €/Monat</li><li>12.500 km: 263 €/Monat</li><li>15.000 km: 273 €/Monat</li><li>17.500 km: 283 €/Monat</li><li>20.000 km: 292 €/Monat</li></ul></li><li>48 Monate:<ul><li>10.000 km: 242 €/Monat</li><li>12.500 km: 251 €/Monat</li><li>15.000 km: 260 €/Monat</li><li>17.500 km: 269 €/Monat</li><li>20.000 km: 278 €/Monat</li></ul></li>
-    </details>
-  </div>
 </div>
-
-<div class="card">
-  <img alt="VW Polo Life 1,0 l TSI 7-Gang DSG (95 PS)" src="93792.jpg"/>
-  <h2 class="card-title-above">VW Polo Life 1,0 l TSI 7-Gang DSG (95 PS)</h2>
-  <div class="card-content">
-    <div class="ahk-hinweis">⚫ Farbe: Deep Black Perleffekt</div><div class="ahk-hinweis">🧭 ACC Abstandstempomat</div><div class="ahk-hinweis">🅿️ Einparkhilfe</div><div class="ahk-hinweis">♨️ Sitzheizung</div><div class="ahk-hinweis">🧾 und viele weitere Ausstattungen!</div>
-    <div class="leasing">🔥 Nur 233 €/Monat</div>
-    <p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
-    <div class="details">
+<details style="margin-top: 1rem;">
+<summary>Weitere Leasingraten anzeigen</summary>
+<ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
+<li>24 Monate:<ul><li>10.000 km: 270 €/Monat</li><li>12.500 km: 281 €/Monat</li><li>15.000 km: 293 €/Monat</li><li>17.500 km: 304 €/Monat</li><li>20.000 km: 315 €/Monat</li></ul></li><li>36 Monate:<ul><li>10.000 km: 254 €/Monat</li><li>12.500 km: 263 €/Monat</li><li>15.000 km: 273 €/Monat</li><li>17.500 km: 283 €/Monat</li><li>20.000 km: 292 €/Monat</li></ul></li><li>48 Monate:<ul><li>10.000 km: 242 €/Monat</li><li>12.500 km: 251 €/Monat</li><li>15.000 km: 260 €/Monat</li><li>17.500 km: 269 €/Monat</li><li>20.000 km: 278 €/Monat</li></ul></li>
+</ul></details>
+</div>
+</div>
+<div class="card" onclick="window.location.href='WVWZZZA1SU035145_final.html'">
+<img alt="VW Polo Life 1,0 l TSI 7-Gang DSG (95 PS)" src="93792.jpg"/>
+<h2 class="card-title-above">VW Polo Life 1,0 l TSI 7-Gang DSG (95 PS)</h2>
+<div class="card-content">
+<div class="ahk-hinweis">⚫ Farbe: Deep Black Perleffekt</div><div class="ahk-hinweis">🧭 ACC Abstandstempomat</div><div class="ahk-hinweis">🅿️ Einparkhilfe</div><div class="ahk-hinweis">♨️ Sitzheizung</div><div class="ahk-hinweis">🧾 und viele weitere Ausstattungen!</div>
+<div class="leasing">🔥 Nur 233 €/Monat</div>
+<p class="zusatzkosten">zzgl. 890,00 € Überführung &amp; 199,00 € Zulassungskosten</p>
+<div class="details">
        Laufzeit: 48 Monate<br/>
        Anzahlung: 0 €<br/>
        Jahresfahrleistung: 10.000 km<br/>
@@ -2291,43 +2274,69 @@
        Gesamtbetrag: 12.074,00 €<br/>
        Fahrgestell-Nr.: WVWZZZA1SU035145
        <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
-    </div>
-    <details style="margin-top: 1rem;">
-      <summary>Weitere Leasingraten anzeigen</summary>
-      <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
- <li>24 Monate:<ul><li>10.000 km: 265 €/Monat</li>
-   <li>12.500 km: 276 €/Monat</li>
-   <li>15.000 km: 287 €/Monat</li>
-   <li>17.500 km: 297 €/Monat</li>
-   <li>20.000 km: 308 €/Monat</li>
- </ul></li><li>36 Monate:<ul>
-   <li>10.000 km: 246 €/Monat</li>
-   <li>12.500 km: 255 €/Monat</li>
-   <li>15.000 km: 264 €/Monat</li>
-   <li>17.500 km: 273 €/Monat</li>
-   <li>20.000 km: 282 €/Monat</li>
- </ul></li><li>48 Monate:<ul>
-   <li>10.000 km: 233 €/Monat</li>
-   <li>12.500 km: 242 €/Monat</li>
-   <li>15.000 km: 250 €/Monat</li>
-   <li>17.500 km: 258 €/Monat</li>
-   <li>20.000 km: 266 €/Monat</li>
- </li>
+</div>
+<details style="margin-top: 1rem;">
+<summary>Weitere Leasingraten anzeigen</summary>
+<ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
+<li>24 Monate:<ul><li>10.000 km: 265 €/Monat</li>
+<li>12.500 km: 276 €/Monat</li>
+<li>15.000 km: 287 €/Monat</li>
+<li>17.500 km: 297 €/Monat</li>
+<li>20.000 km: 308 €/Monat</li>
+</ul></li><li>36 Monate:<ul>
+<li>10.000 km: 246 €/Monat</li>
+<li>12.500 km: 255 €/Monat</li>
+<li>15.000 km: 264 €/Monat</li>
+<li>17.500 km: 273 €/Monat</li>
+<li>20.000 km: 282 €/Monat</li>
+</ul></li><li>48 Monate:<ul>
+<li>10.000 km: 233 €/Monat</li>
+<li>12.500 km: 242 €/Monat</li>
+<li>15.000 km: 250 €/Monat</li>
+<li>17.500 km: 258 €/Monat</li>
+<li>20.000 km: 266 €/Monat</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
+
 </details>
 </div>
 </div></section>
-  
-<section class="google-reviews"> 
-<br>
-
+<section style="margin: 4rem auto; text-align: center; font-family: 'Barlow', sans-serif;">
+<p style="color: #b10027; font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem;">
+    Kauf kein Auto bevor du bei AZF warst
+  </p>
+<h2 style="font-size: 2.4rem; font-weight: 700; color: #121212; margin-bottom: 1rem;">
+    Den Autokauf zu einem<br/>Erlebnis machen
+  </h2>
+<p style="max-width: 700px; margin: 0 auto 2rem; color: #555;">
+    Wir legen sehr viel Wert auf die Wünsche unserer Kunden, um den Autokauf zu einem unvergesslichem Erlebnis zu machen.
+  </p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;">
+<div style="flex: 1 1 300px; max-width: 380px; background: #fff; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); padding: 1rem 1.2rem; border-left: 6px solid #1f2d3d;">
+<p style="font-size: 0.85rem; color: #666;">Digitales Autohaus</p>
+<h3 style="color: #1f2d3d; font-size: 1.25rem; font-weight: 600;">Hauseigenes Kundenportal</h3>
+<p style="text-align: right; font-size: 1.5rem; margin: 0;">➜</p>
+<p style="color: #999; font-size: 0.85rem; margin-top: 0.3rem;">🚧 Befindet sich kurz vor Fertigstellung</p>
+</div>
+<div style="flex: 1 1 300px; max-width: 380px; background: #fff; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); padding: 1rem 1.2rem; border-left: 6px solid #1f2d3d;">
+<p style="font-size: 0.85rem; color: #666;">Premium-Feeling</p>
+<h3 style="color: #1f2d3d; font-size: 1.25rem; font-weight: 600;">Hangar-Auslieferung</h3>
+<p style="text-align: right; font-size: 1.5rem; margin: 0;">➜</p>
+</div>
+<div style="flex: 1 1 300px; max-width: 380px; background: #fff; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); padding: 1rem 1.2rem; border-left: 6px solid #1f2d3d;">
+<p style="font-size: 0.85rem; color: #666;">Wir schenken nachhaltig</p>
+<h3 style="color: #1f2d3d; font-size: 1.25rem; font-weight: 600;">AZF-Blütenhonig</h3>
+<p style="text-align: right; font-size: 1.5rem; margin: 0;">➜</p>
+</div>
+</div>
+</section>
+<section class="google-reviews">
+<br/>
 <p>Weitere Informationen zum offiziellen Kraftstoffverbrauch und den offiziellen spezifischen CO2-Emissionen neuer Personenkraftwagen können dem "Leitfaden über den Kraftstoffverbrauch, die CO2-Emissionen und den Stromverbrauch neuer Personenkraftwagen" entnommen werden, der an allen Verkaufsstellen und bei der Deutschen Automobil Treuhand GmbH, sowie unter www.dat.de unentgeltlich erhältlich ist.Die Ermittlung der angegebenen Verbrauchs- und Emissionswerte erfolgte nach dem gem. § 2 Nr.5, 6, 6a Pkw-EnVKV vorgeschriebenen Messverfahren. Die angegebenen Werte beziehen sich daher auch ausschließlich auf Neufahrzeuge und entsprechen aus den vorgenannten Gründen nicht zwingend den Werten des hier konkret angebotenen Fahrzeuges mit dem vorliegenden Ausstattungsumfang</p>
-<br>
+<br/>
 <p>⭐ <strong>Google-Bewertungen anzeigen</strong> – 4,8 Sterne von zufriedenen Kunden!</p>
 <p><a href="https://www.google.com/search?q=VW%20Autozentrum%20Nord%20GmbH%20Rezensionen&amp;rflfq=1&amp;num=20&amp;stick=H4sIAAAAAAAAAONgkxI2MrM0tDA3NjY1MDI0szAysDS33MDI-IpRJSxcwbG0JL8qNa-kqDRXwS-_KEXBPTfJQyEoFShWnJmfl5q3iJUoZQDztZgqaAAAAA&amp;rldimm=2691873350216820979&amp;tbm=lcl&amp;cs=1&amp;hl=de&amp;sa=X&amp;ved=0CCEQ9fQKKABqFwoTCMi3ic6s3Y0DFQAAAAAdAAAAABAG&amp;biw=1229&amp;bih=556&amp;dpr=1.56#lkt=LocalPoiReviews" target="_blank">👉 Zu den Google-Rezensionen</a></p>
-
 </section>
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
@@ -2406,24 +2415,21 @@
   }
 </script>
 
-</div>
 <footer class="site-footer">
 <div class="footer-container">
 
 Unsere Angebote werden gewissenhaft und sorgfältig erstellt, jedoch bitten wir um Verständnis, dass wir auf evtl. Fehler in der Anzeige keine
- Gewähr oder Haftung übernehmen können.<br>Zwischenzeitlicher Verkauf vorbehalten.
-<br>
-       <p class="footer-text"><p><a <a href="impressum.html" target="_blank">Impressum</a> |
+ Gewähr oder Haftung übernehmen können.<br/>Zwischenzeitlicher Verkauf vorbehalten.
+<br/>
+<p class="footer-text"><p><a <a="" href="impressum.html" target="_blank">Impressum</a> |
   <a href="datenschutzerklaerung.html" target="_blank">Datenschutz</a>
 </p>
-
-      <a href="https://www.azf-gruppe.de" rel="noopener" target="_blank">
+<a href="https://www.azf-gruppe.de" rel="noopener" target="_blank">
         © 2025 AZF-GRUPPE
       </a>
-<div style="position: fixed; bottom: 10px; right: 15px; font-size: 1.5rem; cursor: pointer;" onclick="logout()" title="Abmelden">
+<div onclick="logout()" style="position: fixed; bottom: 10px; right: 15px; font-size: 1.5rem; cursor: pointer;" title="Abmelden">
   🚪
 </div>
-
 <script>
   function logout() {
     // Login-Status löschen
@@ -2432,6 +2438,6 @@ Unsere Angebote werden gewissenhaft und sorgfältig erstellt, jedoch bitten wir 
     window.location.href = "login.html";
   }
 </script>
-</footer>
-</body>
+</p></div></footer>
+
 </html>

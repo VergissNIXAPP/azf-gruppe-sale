@@ -1,0 +1,97 @@
+document.addEventListener("DOMContentLoaded", function () {
+  loadDropdowns();
+});
+
+function loadDropdowns() {
+  const dropdownButtons = document.querySelectorAll(".dropdown-button");
+
+  dropdownButtons.forEach((button) => {
+    if (button.getAttribute("data-initialized") === "true") {
+      return; // Skip if already initialized
+    }
+
+    const menuId = button.getAttribute("aria-controls");
+    const dropdownMenu = document.getElementById(menuId);
+
+    button.addEventListener("click", function () {
+      const isExpanded = this.getAttribute("aria-expanded") === "true";
+      this.setAttribute("aria-expanded", !isExpanded);
+
+      if (!isExpanded) {
+        dropdownMenu.classList.remove(
+          "transform",
+          "opacity-0",
+          "scale-95",
+          "pointer-events-none"
+        );
+        dropdownMenu.classList.add(
+          "transition",
+          "ease-out",
+          "duration-200",
+          "transform",
+          "opacity-100",
+          "scale-100",
+          "pointer-events-auto"
+        );
+      } else {
+        dropdownMenu.classList.remove(
+          "transition",
+          "ease-out",
+          "duration-200",
+          "transform",
+          "opacity-100",
+          "scale-100",
+          "pointer-events-auto"
+        );
+        dropdownMenu.classList.add(
+          "transition",
+          "ease-in",
+          "duration-75",
+          "transform",
+          "opacity-0",
+          "scale-95",
+          "pointer-events-none"
+        );
+      }
+    });
+
+    // Mark as initialized
+    button.setAttribute("data-initialized", "true");
+
+    dropdownMenu.addEventListener("click", function (event) {
+      event.stopPropagation();
+    });
+  });
+
+  document.addEventListener("click", function (event) {
+    dropdownButtons.forEach((button) => {
+      const menuId = button.getAttribute("aria-controls");
+      const dropdownMenu = document.getElementById(menuId);
+
+      const isClickInside =
+        button.contains(event.target) || dropdownMenu.contains(event.target);
+
+      if (!isClickInside && button.getAttribute("aria-expanded") === "true") {
+        button.setAttribute("aria-expanded", false);
+        dropdownMenu.classList.remove(
+          "transition",
+          "ease-out",
+          "duration-200",
+          "transform",
+          "opacity-100",
+          "scale-100",
+          "pointer-events-auto"
+        );
+        dropdownMenu.classList.add(
+          "transition",
+          "ease-in",
+          "duration-75",
+          "transform",
+          "opacity-0",
+          "scale-95",
+          "pointer-events-none"
+        );
+      }
+    });
+  });
+}

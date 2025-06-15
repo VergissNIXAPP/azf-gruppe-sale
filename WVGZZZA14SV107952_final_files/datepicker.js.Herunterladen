@@ -1,0 +1,252 @@
+class Datepicker {
+  constructor(input) {
+    this.input = input;
+    this.apiUrl = Urls["calendar_data"]();
+    this.selectedDate = null;
+
+    // Disabled dates from data-disabled-dates attribute (format: YYYY-MM-DD, comma-separated)
+    const attr = this.input.getAttribute("data-disabled-dates");
+    this.disabledDates = attr
+      ? new Set(attr.split(",").map((s) => s.trim()))
+      : new Set();
+
+    // Disable weekends if data-disable-weekends attribute is present
+    this.disableWeekends = this.input.hasAttribute("data-disable-weekends");
+
+    this.build();
+    this.bindEvents();
+  }
+
+  build() {
+    // Kalender-Container
+    this.container = document.createElement("div");
+    this.container.className =
+      "absolute bg-white shadow-lg w-72 rounded-md bg-white dark:bg-lighter_dark dark:text-dark_white p-1 max-sm:text-base text-sm shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm mt-2 hidden";
+    this.container.style.zIndex = 1000;
+
+    // Header mit Monat, Jahr und Navigation
+    this.header = document.createElement("div");
+    this.header.className =
+      "flex justify-between items-center mb-2 font-medium";
+
+    // Jahr zurück, Monat zurück
+    this.prevYearBtn = this.createButton(
+      '<i class="fa-regular fa-chevrons-left"></i>'
+    ); // Jahr zurück
+    this.prevBtn = this.createButton(
+      '<i class="fa-regular fa-chevron-left"></i>'
+    ); // Monat zurück
+
+    this.monthLabel = document.createElement("span");
+    this.monthLabel.className = "mx-2";
+
+    // Monat vor, Jahr vor
+    this.nextBtn = this.createButton(
+      '<i class="fa-regular fa-chevron-right"></i>'
+    ); // Monat vor
+    this.nextYearBtn = this.createButton(
+      '<i class="fa-regular fa-chevrons-right"></i>'
+    ); // Jahr vor
+
+    this.header.append(
+      this.prevYearBtn,
+      this.prevBtn,
+      this.monthLabel,
+      this.nextBtn,
+      this.nextYearBtn
+    );
+    this.container.appendChild(this.header);
+
+    // Wochentagskopf (Montag bis Sonntag)
+    this.grid = document.createElement("div");
+    this.grid.className = "grid grid-cols-7 gap-1 text-center text-xs";
+    ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].forEach((d) => {
+      const el = document.createElement("div");
+      if (d === "So") {
+        el.className = "text-azf_red font-bold";
+      } else if (d === "Sa") {
+        el.className = "text-primary_hover font-bold";
+      } else {
+        el.className = "font-semibold";
+      }
+      el.textContent = d;
+      this.grid.appendChild(el);
+    });
+
+    // Platzhalter für Tage
+    this.datesContainer = document.createElement("div");
+    this.datesContainer.className =
+      "contents grid grid-cols-7 col-span-7 gap-1";
+    this.grid.appendChild(this.datesContainer);
+    this.container.appendChild(this.grid);
+
+    document.body.appendChild(this.container);
+  }
+
+  createButton(html) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.innerHTML = html;
+    btn.className = "px-2 hover:bg-gray-200 dark:hover:bg-dark rounded";
+    return btn;
+  }
+
+  bindEvents() {
+    this.input.addEventListener("focus", () => this.open()); 
+    // Listen for manual input changes (no blur interference)
+    this.input.addEventListener("change", () => this.handleManualInput());
+    this.prevBtn.addEventListener("click", () => this.changeMonth(-1));
+    this.nextBtn.addEventListener("click", () => this.changeMonth(1));
+    this.prevYearBtn.addEventListener("click", () => this.changeYear(-1));
+    this.nextYearBtn.addEventListener("click", () => this.changeYear(1));
+    document.addEventListener("click", (e) => {
+      if (!this.container.contains(e.target) && e.target !== this.input)
+        this.close();
+    });
+  }
+
+  handleManualInput() {
+    // Parse value like dd.mm.yyyy
+    const val = this.input.value.trim();
+    const parts = val.split(".");
+    if (parts.length === 3) {
+      const day = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10);
+      const year = parseInt(parts[2], 10);
+      if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+        // Valid date
+        this.selectedDate = new Date(year, month - 1, day);
+        this.currentYear = year;
+        this.currentMonth = month;
+        // Reformat to DD.MM.YYYY
+        const dd = String(day).padStart(2, "0");
+        const mm = String(month).padStart(2, "0");
+        this.input.value = `${dd}.${mm}.${year}`;
+        // Update calendar if open
+        if (!this.container.classList.contains("hidden")) {
+          this.fetchCalendar();
+        }
+      }
+    }
+  }
+
+  open() {
+    const rect = this.input.getBoundingClientRect();
+    this.container.style.top = `${rect.bottom + window.scrollY}px`;
+    this.container.style.left = `${rect.left + window.scrollX}px`;
+
+    const today = this.selectedDate || new Date();
+    this.currentYear = today.getFullYear();
+    this.currentMonth = today.getMonth() + 1;
+    this.fetchCalendar();
+    this.container.classList.remove("hidden");
+  }
+
+  close() {
+    this.container.classList.add("hidden");
+  }
+
+  changeMonth(delta) {
+    this.currentMonth += delta;
+    if (this.currentMonth < 1) {
+      this.currentMonth = 12;
+      this.currentYear--;
+    } else if (this.currentMonth > 12) {
+      this.currentMonth = 1;
+      this.currentYear++;
+    }
+    this.fetchCalendar();
+  }
+
+  changeYear(delta) {
+    this.currentYear += delta;
+    this.fetchCalendar();
+  }
+
+  fetchCalendar() {
+    fetch(`${this.apiUrl}?year=${this.currentYear}&month=${this.currentMonth}`)
+      .then((r) => r.json())
+      .then((data) => this.renderCalendar(data));
+  }
+
+  renderCalendar({ year, month, weeks }) {
+    // Monat und Jahr anzeigen
+    this.monthLabel.textContent = `${String(month).padStart(2, "0")} - ${year}`;
+    this.datesContainer.innerHTML = "";
+
+    const today = new Date();
+    const selected = this.selectedDate;
+
+    weeks.forEach((week, wIdx) => {
+      week.forEach((day, idx) => {
+        const cell = document.createElement("div");
+        let classes = "p-1 rounded cursor-pointer text-sm";
+        if (day === 0) {
+          classes += " pointer-events-none";
+          cell.textContent = "";
+        } else {
+          const iso = `${year}-${String(month).padStart(2, "0")}-${String(
+            day
+          ).padStart(2, "0")}`;
+          // Disable weekends if flagged
+          if (this.disableWeekends && idx >= 5) {
+            classes += " text-gray-500 dark:text-gray-400 cursor-not-allowed";
+            cell.textContent = day;
+          }
+          // Disabled explicit dates
+          else if (this.disabledDates.has(iso)) {
+            classes +=
+              " bg-gray-200 text-gray-500 dark:text-gray-400 pointer-events-none";
+            cell.textContent = day;
+          } else {
+            // Heute
+            if (
+              year === today.getFullYear() &&
+              month === today.getMonth() + 1 &&
+              day === today.getDate()
+            ) {
+              classes += " bg-azf_red hover:bg-azf_red_accent text-white";
+            }
+            // Ausgewähltes Datum
+            if (
+              selected &&
+              selected.getFullYear() === year &&
+              selected.getMonth() + 1 === month &&
+              selected.getDate() === day
+            ) {
+              classes += " bg-primary text-white";
+            }
+            classes += " hover:bg-gray-200 dark:hover:bg-dark";
+            cell.textContent = day;
+            cell.addEventListener("click", () =>
+              this.selectDate(year, month, day)
+            );
+          }
+        }
+        cell.className = classes;
+        this.datesContainer.appendChild(cell);
+      });
+    });
+  }
+
+  selectDate(y, m, d) {
+    const dd = String(d).padStart(2, "0");
+    const mm = String(m).padStart(2, "0");
+    // Deutsches Datumsformat DD.MM.YYYY
+    this.selectedDate = new Date(y, m - 1, d);
+    this.input.value = `${dd}.${mm}.${y}`;
+    this.close();
+  }
+}
+
+// Initialisierung für alle inputs
+function initDatepickers() {
+  document.querySelectorAll("input[data-datepicker]").forEach((input) => {
+    if (!input._datepicker) {
+      input._datepicker = new Datepicker(input);
+    }
+  });
+}
+
+if (document.readyState !== "loading") initDatepickers();
+else document.addEventListener("DOMContentLoaded", initDatepickers);

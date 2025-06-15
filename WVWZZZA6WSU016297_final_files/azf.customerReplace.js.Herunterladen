@@ -1,0 +1,44 @@
+
+function replaceCustomerIDs() {
+  var customerIDs = document.querySelectorAll("[data-customerid]");
+
+  customerIDs.forEach(customerID => {
+    if(customerID.getAttribute('data-replaced') == 'false'){
+
+      customerID.innerHTML =
+        '<i class="fa-regular fa-spinner-third fa-spin" style="animation-duration: .5s;"></i>';
+
+      $.ajax({
+        type: "post",
+        url: Urls["api_customer_data"](),
+        data: {
+          customerId: customerID.getAttribute("data-customerid"),
+        },
+        dataType: "json",
+        success: function (data) {
+          if (data.success) {
+            customer = data.data;
+
+            if (customer.AnredeText == "Firma") {
+              // Firmenkundennummer
+              customerID.innerHTML = `<span class="opacity-0 animate-fade-in-up">${customer.AnredeText} ${customer.NachName}</span>`;
+            } else {
+              // Privatkunde
+              customerID.innerHTML = `<span class="opacity-0 animate-fade-in-up">${customer.VorName} ${customer.NachName}</span>`;
+            }
+
+            customerID.setAttribute("data-replaced", "true");
+          } else {
+            customerID.innerHTML = "Kundenname konnte nicht geladen werden";
+          }
+        },
+        beforeSend: function (xhr, settings) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        },
+      });
+
+    }
+  });
+}
+
+replaceCustomerIDs();

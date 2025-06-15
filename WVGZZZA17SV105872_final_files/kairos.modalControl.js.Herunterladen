@@ -1,0 +1,96 @@
+// Function to show a modal
+function showModal(modalId) {
+  const modal = document.querySelector(modalId);
+  const backdrop = modal.querySelector(".fixed.bg-gray-500");
+  const modalPanel = modal.querySelector(".modal-panel");
+
+  // Dispatch a custom "show" event before the modal is displayed
+  const showEvent = new CustomEvent("show.kndprl.modal", { bubbles: true });
+  modal.dispatchEvent(showEvent);
+
+  backdrop.addEventListener("click", function () {
+    // Hide the modal when the backdrop is clicked
+    hideModal(modalId);
+  });
+  // Add a keydown event listener to hide the modal on Escape key press
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      // Hide the modal when Escape key is pressed
+      hideModal(modalId);
+    }
+  });
+
+  // Ensure the modal starts with hidden state classes
+  backdrop.classList.add("opacity-0");
+  modalPanel.classList.add("opacity-0", "translate-y-4", "sm:scale-95");
+
+  // Remove the 'hidden' class to make the modal visible
+  modal.classList.remove("hidden");
+
+  setTimeout(() => {
+    // Use requestAnimationFrame to apply transition classes after the DOM is ready
+    // Apply transition classes for backdrop
+    backdrop.classList.remove("opacity-0");
+    backdrop.classList.add("opacity-100", "ease-out", "duration-300");
+
+    // Apply transition classes for modal panel
+    modalPanel.classList.remove("opacity-0", "translate-y-4", "sm:scale-95");
+    modalPanel.classList.add("opacity-100", "translate-y-0", "sm:scale-100");
+
+    // Dispatch a custom "shown" event after the modal is fully visible
+    const shownEvent = new CustomEvent("shown.kndprl.modal", { bubbles: true });
+    modal.dispatchEvent(shownEvent);
+  }, 100);
+}
+
+// Function to hide a modal
+function hideModal(modalId) {
+  const modal = document.querySelector(modalId);
+  const backdrop = modal.querySelector(".fixed.bg-gray-500");
+  const modalPanel = modal.querySelector(".modal-panel");
+
+  // Dispatch a custom "hide" event before the modal starts hiding
+  const hideEvent = new CustomEvent("hide.kndprl.modal", { bubbles: true });
+  modal.dispatchEvent(hideEvent);
+
+  // Apply transition classes for hiding the backdrop
+  backdrop.classList.remove("opacity-100");
+  backdrop.classList.add("opacity-0", "ease-in", "duration-200");
+
+  // Apply transition classes for hiding the modal panel
+  modalPanel.classList.remove("opacity-100", "translate-y-0", "sm:scale-100");
+  modalPanel.classList.add("opacity-0", "translate-y-4", "sm:scale-95");
+
+  // Use setTimeout to hide the modal after the transition ends
+  setTimeout(() => {
+    modal.classList.add("hidden");
+
+    // Dispatch a custom "hidden" event after the modal is completely hidden
+    const hiddenEvent = new CustomEvent("hidden.kndprl.modal", {
+      bubbles: true,
+    });
+    modal.dispatchEvent(hiddenEvent);
+  }, 200); // This should match the transition duration (200ms)
+}
+
+// Function to register modal event listeners
+function registerModalListeners() {
+  // Set up event listeners for showing the modal
+  document.querySelectorAll("[data-modal-target]").forEach((button) => {
+    button.addEventListener("click", function () {
+      const modalId = this.getAttribute("data-modal-target");
+      showModal(modalId);
+    });
+  });
+
+  // Set up event listeners for hiding the modal
+  document.querySelectorAll("[data-dismiss-modal]").forEach((button) => {
+    button.addEventListener("click", function () {
+      const modalId = this.getAttribute("data-dismiss-modal");
+      hideModal(modalId);
+    });
+  });
+}
+
+// Register listeners when the DOM is ready
+document.addEventListener("DOMContentLoaded", registerModalListeners);

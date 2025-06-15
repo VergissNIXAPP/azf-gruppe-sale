@@ -95,6 +95,24 @@
 </form>
 </div>
 </div>
+<div id="geheimmenue-wrapper" style="display:none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); background: white; padding: 2rem; border: 2px solid #d72638; border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.4); z-index: 9999;">
+  <h3 style="margin-top: 0;">🔒 Internes Menü</h3>
+  <div id="passwort-abfrage">
+    <p>Bitte Passwort eingeben:</p>
+    <input type="password" id="passwort-eingabe" placeholder="Passwort" style="padding: 0.4rem; width: 100%;">
+    <button onclick="pruefePasswort()" style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #d72638; color: white; border: none; cursor: pointer;">Anzeigen</button>
+  </div>
+  <div id="geheime-infos" style="display:none; margin-top: 1rem;">
+    <p><strong>📊 Nachlassdetails:</strong></p>
+    <ul style="list-style-type: disc; padding-left: 1.2rem;">
+      <li>Golf GTI: -13,8% + Q2 Prämie 5% </li>
+      <li>Taigo R-Line: 13,6% + Q2 Prämie 5%</li>
+       <li>Golf: 13,2% + Q2 Prämie (3%, 4%, 5%)</li>
+      <li>T-Roc: 12% + Q2 Prämie (3%, 4%, 5%)</li>
+      <li>Polo: 12% + Q2 Prämie (3%, 4%, 5%)</li>
+    </ul>
+  </div>
+</div>
 </body>
   <br>
   <br>
@@ -2362,6 +2380,28 @@
       }
     });
   });
+</script>
+<script>
+  const geheimPasswort = "admin"; // dein internes Passwort
+
+  document.addEventListener("keydown", function(e) {
+    if (e.ctrlKey && e.key === "m") {
+      e.preventDefault();
+      const geheimMenue = document.getElementById("geheimmenue-wrapper");
+      geheimMenue.style.display = "block";
+      document.getElementById("passwort-eingabe").focus();
+    }
+  });
+
+  function pruefePasswort() {
+    const eingabe = document.getElementById("passwort-eingabe").value;
+    if (eingabe === geheimPasswort) {
+      document.getElementById("passwort-abfrage").style.display = "none";
+      document.getElementById("geheime-infos").style.display = "block";
+    } else {
+      alert("❌ Falsches Passwort!");
+    }
+  }
 </script>
 
 </div>

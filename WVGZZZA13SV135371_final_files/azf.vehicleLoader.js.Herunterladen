@@ -1,0 +1,307 @@
+var resultsFound = 0;
+var vehicleList = document.getElementById("vehicleList");
+
+function loadPaginations(pageNumber = 1, pageSize = 18) {
+  if(vehicleList) {
+    var currentPage =
+      parseInt(document.querySelector("#pageNumber").innerHTML) || 1;
+    var totalPages = Math.ceil(resultsFound / pageSize);
+
+    var paginationContainers = document.querySelectorAll(".pagination");
+
+    const createButton = (
+      label,
+      page,
+      disabled = false,
+      isCurrent = false,
+      isNextBtn = false,
+      isPrevBtn = false
+    ) => {
+      const button = document.createElement("button");
+      button.className =
+        "pagination-button bg-gray-50 hover:bg-gray-200 dark:hover:bg-azf_red dark:bg-lighter_dark dark:text-dark_white dark:border-dark_brd border border-gray-300 text-gray-900 font-semibold py-2 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed";
+      button.innerHTML = label;
+
+      if (disabled) {
+        button.setAttribute("disabled", true);
+      } else {
+        button.addEventListener("click", () => {
+          document.querySelector("#pageNumber").innerHTML = page;
+          loadVehicles(page);
+        });
+      }
+      if (isCurrent) {
+        button.classList.add(
+          "bg-azf_red",
+          "hover:bg-azf_red_accent",
+          "text-white"
+        );
+        button.classList.remove(
+          "bg-gray-50",
+          "hover:bg-gray-200",
+          "dark:bg-lighter_dark",
+          "dark:text-dark_white",
+          "dark:hover:bg-azf_red",
+          "text-gray-900",
+          "border-gray-300",
+          "border"
+        );
+      }
+      if (isNextBtn) {
+        button.innerHTML = '<i class="fa-light fa-angle-right"></i>';
+
+        button.classList.add("bg-gray-300", "hover:bg-gray-400");
+        button.classList.remove("bg-gray-50", "hover:bg-gray-200");
+      }
+      if (isPrevBtn) {
+        button.innerHTML = '<i class="fa-light fa-angle-left"></i>';
+
+        button.classList.add("bg-gray-300", "hover:bg-gray-400");
+        button.classList.remove("bg-gray-50", "hover:bg-gray-200");
+      }
+
+      return button;
+    };
+
+    paginationContainers.forEach((pagination) => {
+      pagination.innerHTML = "";
+
+      pagination.appendChild(
+        createButton("", currentPage - 1, currentPage === 1, false, false, true)
+      );
+
+      // Always display the first page if it's not already included
+      if (currentPage > 2) {
+        pagination.appendChild(createButton(1, 1, false, false));
+      }
+
+      // Show "..." if there's a gap between the first page and currentPage - 1
+      if (currentPage > 3) {
+        pagination.appendChild(createButton("...", null, true));
+      }
+
+      // Display the previous page (if applicable)
+      if (currentPage > 1) {
+        pagination.appendChild(createButton(currentPage - 1, currentPage - 1));
+      }
+
+      // Display the current page
+      pagination.appendChild(
+        createButton(currentPage, currentPage, true, true)
+      );
+
+      // Display the next page (if applicable)
+      if (currentPage < totalPages) {
+        pagination.appendChild(createButton(currentPage + 1, currentPage + 1));
+      }
+
+      // Show "..." if there's a gap between currentPage + 1 and the last page
+      if (currentPage < totalPages - 2) {
+        pagination.appendChild(createButton("...", null, true));
+      }
+
+      // Always display the last page if it's not already included
+      if (currentPage < totalPages - 1) {
+        pagination.appendChild(
+          createButton(totalPages, totalPages, false, false)
+        );
+      }
+
+      pagination.appendChild(
+        createButton(
+          "",
+          currentPage + 1,
+          currentPage === totalPages,
+          false,
+          true,
+          false
+        )
+      );
+    });
+  }
+}
+
+var counter = 1;
+var previousSection = 1; // Die zuletzt angezeigte Section
+var maxLoadedSection = 1; // Bis zu welcher Section Inhalte bereits geladen wurden
+
+function loadVehicleList() {
+  if (vehicleList) {
+    if (isMobile) {
+      window.addEventListener("section.change", function (event) {
+        const currentSection = event.detail.currentSection;
+        // Bei Section 1 (z.B. Initialzustand) einfach scrollen
+        if (currentSection === 1) {
+          sections[currentSection].scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+
+        // Wenn die angeforderte Section bereits geladen ist, einfach scrollen.
+        if (currentSection <= maxLoadedSection) {
+          sections[currentSection].scrollIntoView({ behavior: "smooth" });
+          previousSection = currentSection;
+          return;
+        }
+
+        // Falls der Benutzer nach oben scrollt, wird auch kein neuer API-Aufruf getriggert.
+        if (currentSection < previousSection) {
+          sections[currentSection].scrollIntoView({ behavior: "smooth" });
+          previousSection = currentSection;
+          return;
+        }
+
+        // Für ungerade Sections (z. B. 3, 5, …) wird davon ausgegangen,
+        // dass sie als Teil des vorherigen, neuen Blocks schon geladen wurden.
+        if (currentSection > 1 && currentSection % 2 !== 0) {
+          sections[currentSection].scrollIntoView({ behavior: "smooth" });
+          previousSection = currentSection;
+          return;
+        }
+
+        // Ab hier wird für gerade Sections (2, 4, 6, …) ein API-Aufruf getriggert,
+        // da wir in einen neuen, noch nicht geladenen Bereich scrollen.
+        vehicleList.innerHTML += `
+          <div class="vehicle-loader h-screen overflow-hidden flex justify-center items-center snap-section" style="display: block;">
+            <div class="flex justify-center items-center h-full my-4">
+              <i class="fa-light fa-spinner-third fa-spin" style="animation-duration: .5s;"></i>
+            </div>
+          </div>
+        `;
+        var loader = document.querySelector(".vehicle-loader");
+        loader.scrollIntoView({ behavior: "smooth" });
+
+        var searchData = Object.fromEntries(
+          new FormData(document.getElementById("mobileSearchForm"))
+        );
+
+        fetch(Urls["api_vehicle_page"]({ page: counter, pageLength: 2 }), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrftoken,
+          },
+          body: JSON.stringify(searchData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            counter++;
+            loader.remove();
+
+            var alreadyLoaded = false;
+            data.carIds.forEach((element) => {
+              var carItem = document.querySelector(
+                '[data-vehicle="' + element + '"]'
+              );
+              if (carItem) {
+                alreadyLoaded = true;
+              }
+            });
+
+            if (!alreadyLoaded && data.carIds.length > 0) {
+              vehicleList.innerHTML += data.htmlString;
+              // Da immer zwei Sections geladen werden, erhöhen wir maxLoadedSection um 2
+              maxLoadedSection += 2;
+            }
+
+            refreshSections();
+            registerModalListeners();
+            initCustomSwiperElements();
+            initShareController();
+            initLikeController();
+
+            sections[currentSection].scrollIntoView({ behavior: "smooth" });
+            previousSection = currentSection;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+    } else {
+      // Desktop-Version: Fahrzeugliste normal laden
+      var vehicleResultsFoundItem = document.querySelector(
+        "#vehicleResultsFound"
+      );
+      resultsFound = parseInt(vehicleResultsFoundItem.innerHTML);
+      var pageNumber = document.getElementById("pageNumber").innerHTML;
+      loadVehicles(pageNumber);
+    }
+  } else {
+    window.addEventListener("section.change", function (event) {
+      const currentSection = event.detail.currentSection;
+      if(sections.length == 0){
+        return;
+      }
+      sections[currentSection].scrollIntoView({ behavior: "smooth" });
+    });
+  }
+}
+
+
+
+function loadVehicles(pageNumber = 1) {
+  var vehicleList = document.getElementById("vehicleList");
+  vehicleList.innerHTML = `
+            <div class="vehicle-loader w-full flex justify-center items-center my-24" style="display: block;">
+              <div class="flex justify-center items-center w-full my-4 text-5xl">
+                <i class="fa-light fa-spinner-third fa-spin" style="animation-duration: .5s;"></i>
+              </div>
+            </div>
+          `;
+  var searchData = Object.fromEntries(
+    new FormData(document.getElementById("mobileSearchForm"))
+  );
+
+  fetch(Urls["api_vehicle_page"]({ page: pageNumber, pageLength: 18 }), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+    body: JSON.stringify(searchData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      vehicleList.innerHTML = "";
+      resultsFound = parseInt(data.numFound);
+      var alreadyLoaded = false;
+      data.carIds.forEach((element) => {
+        var carItem = document.querySelector(
+          '[data-vehicle="' + element + '"]'
+        );
+        if (carItem) {
+          alreadyLoaded = true;
+        }
+      });
+
+      if (!alreadyLoaded && data.carIds.length > 0) {
+        var vehicleData = data.htmlString; // Now you can work with the HTML string
+        vehicleList.innerHTML += vehicleData;
+
+        refreshSections();
+        registerModalListeners();
+        initCustomSwiperElements();
+        initShareController();
+        initLikeController();
+      } else {
+        refreshSections();
+        registerModalListeners();
+        initCustomSwiperElements();
+        initShareController();
+        initLikeController();
+      }
+
+      if (isMobile) {
+        // Scroll to the determined section
+        sections[currentSection].scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+
+      loadPaginations();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+loadVehicleList();

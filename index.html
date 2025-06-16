@@ -7,22 +7,21 @@
 <title>AZF-GRUPPE | SALE</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="styles.css" rel="stylesheet"/>
-</head>
-<!-- Manifest -->
 <link href="manifest.json" rel="manifest"/>
-<!-- iOS WebApp Unterstützung -->
+          
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="default" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="AZF" name="apple-mobile-web-app-title"/>
 <link href="icons/icon-180.png" rel="apple-touch-icon"/>
-<!-- Farben -->
+
 <meta content="#d72638" name="theme-color"/>
 <meta content="#ffffff" name="background-color"/>
+</head>
 <body>
 <header>
 <div class="branding-inside-header">
 <div class="azf-logo">
-<img alt="AZF Logo" src="logos/AZF-Logo-4c_1_WHITE.png"/><div class="azf-logo">
+  <img alt="AZF Logo" src="logos/AZF-Logo-4c_1_WHITE.png"/>
 </div>
 <div class="brand-logos">
 <img alt="VW" src="logos/VW-Logo.png"/>
@@ -66,12 +65,24 @@
 </br></div>
 </div>
 </div></header>
+          <script>
+  function openModal(url) {
+    document.getElementById("fahrzeugIframe").src = url;
+    document.getElementById("fahrzeugModal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("fahrzeugModal").style.display = "none";
+    document.getElementById("fahrzeugIframe").src = "";
+  }
+</script>
+          
 <script>
   // Weiterleiten zur Login-Seite, wenn nicht eingeloggt
   if (localStorage.getItem('isLoggedIn') !== 'true') {
     window.location.href = "login.html";
   }
- 
+ </script>
 <div class="modal-overlay" id="anfrageModal">
 <div class="modal-box">
 <h2 class="modal-title">Anfrage senden</h2>
@@ -2436,21 +2447,9 @@ Unsere Angebote werden gewissenhaft und sorgfältig erstellt, jedoch bitten wir 
     // Weiterleiten zur Login-Seite
     window.location.href = "login.html";
   }
-</script>
-          <script>
-  function openModal(url) {
-    document.getElementById("fahrzeugIframe").src = url;
-    document.getElementById("fahrzeugModal").style.display = "flex";
-  }
-
-  function closeModal() {
-    document.getElementById("fahrzeugModal").style.display = "none";
-    document.getElementById("fahrzeugIframe").src = "";
-  }
-</script>
-
-          
+         
+</div>
+</footer>
 </body>
-</p></div></footer>
-
 </html>
+

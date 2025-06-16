@@ -72,6 +72,19 @@
     window.location.href = "login.html";
   }
 </script>
+          <script>
+  function openModal(url) {
+    document.getElementById("fahrzeugIframe").src = url;
+    document.getElementById("fahrzeugModal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("fahrzeugModal").style.display = "none";
+    document.getElementById("fahrzeugIframe").src = "";
+  }
+</script>
+
+</body>   
 <div class="modal-overlay" id="anfrageModal">
 <div class="modal-box">
 <h2 class="modal-title">Anfrage senden</h2>
@@ -182,7 +195,7 @@
 </h2>
 <br/>
 <section class="grid" style="justify-content: center;">
-<div class="card" onclick="window.location.href='WVWZZZA1ZXY123456_final.html'">
+<div class="card" onclick="openModal('WVWZZZA1ZXY123456_final.html')">
 <img alt="VW Golf GTI Einzelstück" src="92965.jpg">
 <h2 class="card-title-above">VW Golf GTI 2.0 l TSI DSG<br/>(265 PS)</h2>
 <div class="card-content" style="text-align: center;">
@@ -204,7 +217,7 @@
 </br></br></br></br></br></div>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVWZZZA1XSU014228_final.html'">
+<div class="card" onclick="openModal('WVWZZZA1XSU014228_final.html')">
 <img alt="VW Taigo R-Line 1.5 l TSI OPF (150 PS)" src="93511.jpg">
 <h2 class="card-title-above">VW Taigo R-Line 1.5 l TSI DSG<br/>(150 PS)</h2>
 <div class="card-content" style="text-align: center;">
@@ -235,7 +248,7 @@
   Golf Angebote
 </h2>
 <section class="grid">
-<div class="card" onclick="window.location.href='WVWZZZCD3SW189369_final.html'">
+<div class="card" onclick="openModal('WVWZZZCD3SW189369_final.html')">
 <img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93491.jpg"><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White</div>
@@ -323,7 +336,7 @@
 </div>
 </div>
 
-<div class="card" onclick="window.location.href='WVWZZZCD6SW211395_final.html'">
+<div class="card" onclick="openModal('WVWZZZCD6SW211395_final.html')">
 <img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93639.jpg"><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Oyster Silver</div>
@@ -410,7 +423,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVWZZZCD9SW191255_final.html'">
+<div class="card" onclick="openModal('WVWZZZCD9SW191255_final.html')">
 <img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93492.jpg"><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Grenadillschwarz</div>
@@ -497,7 +510,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVWZZZCD4SW186836_final.html'">
+<div class="card" onclick="openModal('WVWZZZCD4SW186836_final.html')">
 <img alt="VW Golf Style 1,5 l TSI OPF (150 PS)  6-Gang" src="93640.jpg"><h2 class="card-title-above">VW Golf Style 1,5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">🔵 Farbe: Crystal Ice Blue</div>
@@ -593,7 +606,7 @@
   T-Roc Angebote
 </h2>
 <section class="grid">
-<div class="card" onclick="window.location.href='WVGZZZA17SV085445_final.html'">
+<div class="card" onclick="openModal('WVGZZZA17SV085445_final.html')">
 <img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS)  6-Gang" src="94224.jpg"><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
@@ -680,7 +693,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA17SV085218_final.html'">
+<div class="card" onclick="openModal('WVGZZZA17SV085218_final.html')">
 <img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94224.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
@@ -767,7 +780,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA18SV084188_final.html'">
+<div class="card" onclick="openModal('WVGZZZA18SV084188_final.html')">
 <img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94163.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pyritsilber/Schwarz</div>
@@ -854,7 +867,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA10SV094195_final.html'">
+<div class="card" onclick="openModal('WVGZZZA10SV094195_final.html')">
 <img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94224.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
@@ -942,7 +955,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVWZZZA12SV096191_final.html'">
+<div class="card" onclick="openModal('WVWZZZA12SV096191_final.html')">
 <img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94223.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pyritsilber/Schwarz</div>
@@ -1030,7 +1043,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA13SV096233_final.html'">
+<div class="card" onclick="openModal('WVGZZZA13SV096233_final.html')">
 <img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94163.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pyritsilber/Schwarz</div>
@@ -1118,7 +1131,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA11SV093881_final.html'">
+<div class="card" onclick="openModal('WVGZZZA11SV093881_final.html')">
 <img alt="VW T-Roc Style 1.5 l TSI OPF (150 PS) 6-Gang" src="94221.jpg"/><h2 class="card-title-above">VW T-Roc Style 1.5 l TSI 6-Gang<br/>(150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Deep Black</div>
@@ -1206,7 +1219,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA19SV085298_final.html'">
+<div class="card" onclick="openModal('WVGZZZA19SV085298_final.html')">
 <img alt="VW T-Roc R-Line 1.5 l TSI OPF (150 PS) 7-Gang-DSG" src="93791.jpg"/><h2 class="card-title-above">VW T-Roc R-Line 1.5 l TSI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Indiumgrau/Schwarz</div>
@@ -1294,7 +1307,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA16SV086778_final.html'">
+<div class="card" onclick="openModal('WVGZZZA16SV086778_final.html')">
 <img alt="VW T-Roc R-Line 1.5 l TSI OPF (150 PS) 7-Gang-DSG" src="94276.jpg"/><h2 class="card-title-above">VW T-Roc R-Line 1.5 l TSI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">🔵 Farbe: Lapiz Blue</div>
@@ -1382,7 +1395,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA17SV105872_final.html'">
+<div class="card" onclick="openModal('WVGZZZA17SV105872_final.html')">
 <img alt="VW T-Roc Style 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="93928.jpg"/><h2 class="card-title-above">VW T-Roc Style 2.0 l TDI 7-Gang<br/>DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Deep Black</div>
@@ -1470,7 +1483,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA16SV142475_final.html'">
+<div class="card" onclick="openModal('WVGZZZA16SV142475_final.html')">
 <img alt="VW T-Roc R-Line 2.0 TDI SCR (150 PS) 7-Gang-DSG" src="94175.jpg"/><h2 class="card-title-above">VW T-Roc R-Line 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
@@ -1558,7 +1571,7 @@
 </ul></details>
 </div>
 </div>
-</div><div class="card" onclick="window.location.href='WVGZZZA14SV064763_final.html'">
+<div class="card" onclick="openModal('WVGZZZA14SV064763_final.html')">
 <img alt="VW T-Roc R-Line 1.5 l TSI OPF (150 PS) 7-Gang-DSG" src="93791.jpg"/><h2 class="card-title-above">VW T-Roc R-Line 1.5 l TSI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Indiumgrau/Schwarz</div>
@@ -1646,7 +1659,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA13SV135371_final.html'">
+<div class="card" onclick="openModal('WVGZZZA13SV135371_final.html')">
 <img alt="VW T-Roc Style 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="94172.jpg"/><h2 class="card-title-above">VW T-Roc Style 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pyritsilber/Schwarz</div>
@@ -1735,7 +1748,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA14SV135265_final.html'">
+<div class="card" onclick="openModal('WVGZZZA14SV135265_final.html')">
 <img alt="VW T-Roc Style 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="94171.jpg"/><h2 class="card-title-above">VW T-Roc Style 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Indiumgrau/Schwarz</div>
@@ -1823,7 +1836,7 @@
 </ul></details>
 </div>
 </div>
-</div><div class="card" onclick="window.location.href='WVGZZZA14SV107711_final.html'">
+<div class="card" onclick="openModal('WVGZZZA14SV107711_final.html')">
 <img alt="VW T-Roc GOAL 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="94167.jpg"/><h2 class="card-title-above">VW T-Roc GOAL 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pure White/Schwarz</div>
@@ -1911,7 +1924,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA14SV107952_final.html'">
+<div class="card" onclick="openModal('WVGZZZA14SV107952_final.html')">
 <img alt="VW T-Roc GOAL 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="94169.jpg"/><h2 class="card-title-above">VW T-Roc GOAL 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚪ Farbe: Pyritsilber/Schwarz</div>
@@ -1999,7 +2012,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA12SV139864_final.html'">
+<div class="card" onclick="openModal('WVGZZZA12SV139864_final.html')">
 <img alt="VW T-Roc R-Line 2.0 l TDI SCR (150 PS) 7-Gang-DSG" src="94176.jpg"/><h2 class="card-title-above">VW T-Roc R-Line 2.0 l TDI 7-Gang DSG (150 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">⚫ Farbe: Deep Black</div>
@@ -2087,7 +2100,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVGZZZA15SV143018_final.html'">
+<div class="card" onclick="openModal('WVGZZZA15SV143018_final.html')">
 <img alt="VW T-Roc R 2.0 l TSI OPF 7-Gang DSG (300 PS)" src="94174.jpg"/><h2 class="card-title-above">VW T-Roc R 2.0 l TSI 7-Gang DSG (300 PS)</h2>
 <div class="card-content">
 <div class="ahk-hinweis">🔵 Farbe: Lapiz Blue</div>
@@ -2187,7 +2200,7 @@
   Polo Angebote
 </h2>
 <section class="grid">
-<div class="card" onclick="window.location.href='WVWZZZA5RU159560_final.html'">
+<div class="card" onclick="openModal('WVWZZZA5RU159560_final.html')">
 <img alt="VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)" src="93448.jpg"/>
 <h2 class="card-title-above">VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)</h2>
 <div class="card-content">
@@ -2199,7 +2212,7 @@
        Anzahlung: 0 €<br/>
        Jahresfahrleistung: 10.000 km<br/>
        Effektiver Jahreszins: 3,73 %<br/>
-       Gesamtbetrag: 12986,00 €<br/>
+       Gesamtbetrag: 12.986,00 €<br/>
        Fahrgestell-Nr.: WVWZZZA5RU159560
        <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
 </div>
@@ -2212,7 +2225,7 @@
 </details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVWZZZA1XSU014228_final.html'">
+<div class="card" onclick="openModal('WVWZZZA1XSU014228_final.html')">
 <img alt="VW Polo GOAL 1,0 l TSI 5-Gang (95 PS)" src="93524.jpg"/>
 <h2 class="card-title-above">VW Polo GOAL 1,0 l TSI 5-Gang (95 PS)</h2>
 <div class="card-content">
@@ -2224,7 +2237,7 @@
        Anzahlung: 0 €<br/>
        Jahresfahrleistung: 10.000 km<br/>
        Effektiver Jahreszins: 3,73 %<br/>
-       Gesamtbetrag: 11546,00 €<br/>
+       Gesamtbetrag: 11.546,00 €<br/>
        Fahrgestell-Nr.: WVWZZZA1XSU014228
        <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
 </div>
@@ -2236,7 +2249,7 @@
 </details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVWZZZA6SU015117_final.html'">
+<div class="card" onclick="openModal('WVWZZZA6SU015117_final.html')">
 <img alt="VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)" src="93526.jpg"/>
 <h2 class="card-title-above">VW Polo Style 1,0 l TSI 7-Gang DSG (95 PS)</h2>
 <div class="card-content">
@@ -2248,7 +2261,7 @@
        Anzahlung: 0 €<br/>
        Jahresfahrleistung: 10.000 km<br/>
        Effektiver Jahreszins: 3,73 %<br/>
-       Gesamtbetrag: 12506,00 €<br/>
+       Gesamtbetrag: 12.506,00 €<br/>
        Fahrgestell-Nr.: WVWZZZA6SU015117
        <button class="anfrage-button" onclick="openModal(this)">📩 Anfragen</button>
 </div>
@@ -2259,7 +2272,7 @@
 </ul></details>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVWZZZA1SU035145_final.html'">
+<div class="card" onclick="openModal('WVWZZZA1SU035145_final.html')">
 <img alt="VW Polo Life 1,0 l TSI 7-Gang DSG (95 PS)" src="93792.jpg"/>
 <h2 class="card-title-above">VW Polo Life 1,0 l TSI 7-Gang DSG (95 PS)</h2>
 <div class="card-content">

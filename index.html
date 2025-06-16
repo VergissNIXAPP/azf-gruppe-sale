@@ -122,54 +122,59 @@
 <p id="detail-leasing">Leasingdetails...</p>
 </div>
 </div>
-<script>
-  function openDetailModal(titel, bild, ausstattung, leasing) {
-    document.getElementById('detail-titel').innerText = titel;
-    document.getElementById('detail-bild').src = bild;
-    document.getElementById('detail-ausstattung').innerHTML = ausstattung;
-    document.getElementById('detail-leasing').innerHTML = leasing;
-    document.getElementById('fahrzeugDetails').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeDetailModal() {
-    document.getElementById('fahrzeugDetails').style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
-</script>
 <style>
-.detail-modal {
+.popup-overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
-  display: none;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99999;
+  z-index: 10000;
 }
-.detail-content {
+.popup-content {
   background: white;
-  max-width: 800px;
+  padding: 2rem;
+  max-width: 960px;
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
-  padding: 2rem;
-  border-radius: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
   position: relative;
-  font-family: 'Barlow', sans-serif;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
-.close-button {
+.popup-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: transparent;
-  border: none;
-  font-size: 1.8rem;
+  font-size: 2rem;
   cursor: pointer;
+  color: #333;
 }
 </style>
+
+<script>
+function showPopup(filePath) {
+  fetch(filePath)
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('popupContainer').innerHTML = data;
+      document.getElementById('fahrzeugPopup').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    })
+    .catch(error => {
+      document.getElementById('popupContainer').innerHTML = '<p style="color:red">Fehler beim Laden der Fahrzeugdetails.</p>';
+      document.getElementById('fahrzeugPopup').style.display = 'flex';
+    });
+}
+
+function closePopup() {
+  document.getElementById('fahrzeugPopup').style.display = 'none';
+  document.getElementById('popupContainer').innerHTML = '';
+  document.body.style.overflow = 'auto';
+}
+</script>
 </body>
 <br/>
 <br/>
@@ -182,7 +187,7 @@
 </h2>
 <br/>
 <section class="grid" style="justify-content: center;">
-<div class="card" onclick="window.location.href='WVWZZZA1ZXY123456_final.html'">
+<div class="card" onclick="showPopup('WVWZZZA1ZXY123456_final.html')">
 <img alt="VW Golf GTI Einzelstück" src="92965.jpg">
 <h2 class="card-title-above">VW Golf GTI 2.0 l TSI DSG<br/>(265 PS)</h2>
 <div class="card-content" style="text-align: center;">
@@ -204,7 +209,7 @@
 </br></br></br></br></br></div>
 </div>
 </div>
-<div class="card" onclick="window.location.href='WVWZZZA1XSU014228_final.html'">
+<div class="card" onclick="showPopup('WVWZZZA1XSU014228_final.html')">
 <img alt="VW Taigo R-Line 1.5 l TSI OPF (150 PS)" src="93511.jpg">
 <h2 class="card-title-above">VW Taigo R-Line 1.5 l TSI DSG<br/>(150 PS)</h2>
 <div class="card-content" style="text-align: center;">

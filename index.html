@@ -71,18 +71,6 @@
   if (localStorage.getItem('isLoggedIn') !== 'true') {
     window.location.href = "login.html";
   }
-</script>
-          <script>
-  function openModal(url) {
-    document.getElementById("fahrzeugIframe").src = url;
-    document.getElementById("fahrzeugModal").style.display = "flex";
-  }
-
-  function closeModal() {
-    document.getElementById("fahrzeugModal").style.display = "none";
-    document.getElementById("fahrzeugIframe").src = "";
-  }
-</script>
  
 <div class="modal-overlay" id="anfrageModal">
 <div class="modal-box">
@@ -182,7 +170,6 @@
   cursor: pointer;
 }
 </style>
-</body>
 <br/>
 <br/>
 <h2 class="card-section-title" style="
@@ -2450,6 +2437,20 @@ Unsere Angebote werden gewissenhaft und sorgfältig erstellt, jedoch bitten wir 
     window.location.href = "login.html";
   }
 </script>
+          <script>
+  function openModal(url) {
+    document.getElementById("fahrzeugIframe").src = url;
+    document.getElementById("fahrzeugModal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("fahrzeugModal").style.display = "none";
+    document.getElementById("fahrzeugIframe").src = "";
+  }
+</script>
+
+          
+</body>
 </p></div></footer>
 
 </html>

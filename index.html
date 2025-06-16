@@ -65,24 +65,6 @@
 </br></div>
 </div>
 </div></header>
-          <script>
-  function openModal(url) {
-    document.getElementById("fahrzeugIframe").src = url;
-    document.getElementById("fahrzeugModal").style.display = "flex";
-  }
-
-  function closeModal() {
-    document.getElementById("fahrzeugModal").style.display = "none";
-    document.getElementById("fahrzeugIframe").src = "";
-  }
-</script>
-          
-<script>
-  // Weiterleiten zur Login-Seite, wenn nicht eingeloggt
-  if (localStorage.getItem('isLoggedIn') !== 'true') {
-    window.location.href = "login.html";
-  }
- </script>
 <div class="modal-overlay" id="anfrageModal">
 <div class="modal-box">
 <h2 class="modal-title">Anfrage senden</h2>
@@ -133,21 +115,24 @@
 <p id="detail-leasing">Leasingdetails...</p>
 </div>
 </div>
-<script>
-  function openDetailModal(titel, bild, ausstattung, leasing) {
-    document.getElementById('detail-titel').innerText = titel;
-    document.getElementById('detail-bild').src = bild;
-    document.getElementById('detail-ausstattung').innerHTML = ausstattung;
-    document.getElementById('detail-leasing').innerHTML = leasing;
-    document.getElementById('fahrzeugDetails').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+   <script>
+  function openModal(url) {
+    document.getElementById("fahrzeugIframe").src = url;
+    document.getElementById("fahrzeugModal").style.display = "flex";
   }
 
-  function closeDetailModal() {
-    document.getElementById('fahrzeugDetails').style.display = 'none';
-    document.body.style.overflow = 'auto';
+  function closeModal() {
+    document.getElementById("fahrzeugModal").style.display = "none";
+    document.getElementById("fahrzeugIframe").src = "";
   }
 </script>
+          
+<script>
+  // Weiterleiten zur Login-Seite, wenn nicht eingeloggt
+  if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = "login.html";
+  }
+ </script>
 <style>
 .detail-modal {
   position: fixed;

@@ -188,20 +188,22 @@
     body.dark-mode .login-form button.submit {
       background-color: #e60036;
     }
-    @media screen and (max-width: 768px) {
+
+    @media (max-width: 768px) {
   body {
     flex-direction: column;
   }
 
   .left-side, .right-side {
     width: 100vw;
-    height: 80vw;
+    height: auto;
+    min-height: 50vh;
   }
 
   .left-side {
     padding: 2rem 1rem;
-    background-position: center top;
-    gap: 1.5rem;
+    background-position: center 70%;
+    background-size: cover;
   }
 
   .azf-logo {
@@ -215,16 +217,16 @@
   }
 
   .brand-logos img {
-    height: 30px;
+    height: 20px;
     max-width: 60px;
   }
 
   .brand-logos img[alt="Audi"] {
-    max-width: 55px;
+    max-width: 50px;
   }
 
   .brand-logos img[alt="Skoda"] {
-    max-width: 50px;
+    max-width: 45px;
   }
 
   .divider {
@@ -232,11 +234,11 @@
   }
 
   .right-side {
-    padding: 2rem 1rem;
+    padding: 2rem 1.5rem;
   }
 
   .login-form h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .login-form h3 {
@@ -244,21 +246,20 @@
   }
 
   .login-form p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .form-group input {
     padding: 0.6rem;
-    font-size: 1rem;
   }
 
   .login-form button.submit {
-    padding: 0.75rem;
-    font-size: 1.05rem;
+    padding: 0.7rem;
+    font-size: 0.95rem;
   }
 
   .dark-toggle-icon {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -283,7 +284,8 @@
       <img src="logos/Maxus-Logo.png" alt="Maxus">
     </div>
   </div>
-          <div class="right-side">
+
+  <div class="right-side">
     <div class="dark-toggle-icon">
       <button type="button" onclick="toggleDarkMode()" aria-expanded="false">
         <span class="sr-only">Toggle Darkmode</span>
@@ -292,10 +294,10 @@
         </svg>
       </button>
     </div>
-      <div class="login-form">
+    <div class="login-form">
       <h2>Anmelden</h2>
-      <h3>Jetzt bei AZF-SALE anmelden</h3>
-      <p style="text-align: left;">Genießen Sie Ihre Angebote!</p>
+      <h3>Jetzt bei AZF-SALE anmelden!</h3>
+      <p style="text-align: left;">Genießen Sie Ihre Angebote</p>
       <div class="form-group">
         <label for="username">Benutzername</label>
         <input type="text" id="username" placeholder="Benutzername" />

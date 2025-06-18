@@ -14,32 +14,21 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
-
 header {
-  background-image: url('2222.jpg');
-  background-repeat: no-repeat;
-  background-position: center 100%; /* Zeigt unteren Bildausschnitt */
+  background: url('2222.jpg') no-repeat center center;
   background-size: cover;
-  background-attachment: scroll; /* Statt fixed – besser für Mobile */
- 
-  padding-top: 3rem;     /* rückt Inhalt weiter runter */
-  padding-bottom: 2rem;  /* Abstand nach unten */
-
-  color: white;
-  text-align: center;
-
-  height: 600px;         /* Gesamthöhe des Headers */
+  background-attachment: scroll;
+  height: 600px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-
-
-  position: relative;
-  animation: fadeIn 2s ease-in-out;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  color: white;
 }
 
-}
 .header-text {
   position: absolute;
   top: 50%;
@@ -80,64 +69,29 @@ p {
   animation: fadeIn 1s ease-in-out;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.animate-pulse {
-  animation: pulse 1.2s ease-in-out infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
-}
-
-.card {
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
-  border: none;
-  
-  transition: transform 0.3s ease;
-  position: relative;
-  color: #222;
-}
-
-.card:hover {
-  transform: translateY(-0.5rem);
-}
-
-
-
-
 .card {
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  color: #222;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e5e5;
+}
+
+.card {
+  background: #fff;
+  overflow: hidden; /* Verhindert unschöne Überstände */
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  transform: scale(1.01);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .card img {
   width: 100%;
   height: auto;
-  display: block;
+  object-fit: cover;
+  border-radius: 0.75rem;
 }
 
 .card-title-above {
@@ -145,6 +99,12 @@ p {
   font-weight: 600;
   margin: 1rem auto 0;
   text-align: center;
+}
+.card-section-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 500;
 }
 
 .card-content {
@@ -172,33 +132,20 @@ p {
 
 /* Buttons */
 .anfrage-button {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  border-radius: 8px;
+  background: #d72638;
+  color: white;
   border: none;
-  text-align: center;
-  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  margin: 1rem auto;
   cursor: pointer;
-  background: linear-gradient(to right, #d72638, #b61d2b);
-  color: #fff;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  display: block;
 }
 
 .anfrage-button:hover {
   background: #b61d2b;
-} 
-
-@media (max-width: 768px) {
-  .anfrage-button {
-    width: 100%;
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
-  }
-  
-  
 }
 
 /* Modal */
@@ -465,7 +412,7 @@ body.dark-mode .divider {
   .branding-bar .azf-logo img {
     max-height: 45px;
   }
-    
+
   .branding-bar .brand-logos img {
     height: 24px;
   }
@@ -606,52 +553,9 @@ header {
     overflow-x: auto;    /* scrollt zur Seite, wenn’s nicht passt */
     gap: 0.6rem;         /* engerer Abstand */
   }
-  
-  .card-section-title {
-  font-size: 2rem;
+
+
   }
-
-  <style>
-  @media (max-width: 768px) {
-    .card-section-title {
-      font-size: 1.3rem;
-      padding: 0 1rem;
-      line-height: 1.3;
-    }
-
-    .card {
-      max-width: 95% !important;
-      margin: 1rem auto;
-    }
-
-    .card-content {
-      padding: 1rem;
-    }
-
-    .card-title-above {
-      font-size: 1.1rem;
-    }
-
-    .leasing {
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-
-    .zusatzkosten,
-    .details {
-      font-size: 0.9rem;
-    }
-
-    .ahk-hinweis {
-      font-size: 0.95rem;
-    }
-
-    button.anfrage-button {
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-    }
-  }
-</style>
 
 
 

@@ -1,29 +1,30 @@
 {
-  "name": "AZF-GRUPPE | SALE",
-  "short_name": "AZF SALE",
-  "description": "Sonderleasingangebote der AZF-GRUPPE für VW T-Roc und weitere Modelle",
-  "lang": "de",
-  "start_url": "/index.html",
+  "name": "AZF SALE",
+  "short_name": "AZF",
+  "start_url": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#d72638",
-  "orientation": "portrait",
+  "description": "AZF App – Sichtbarkeit & Angebote auf einen Blick.",
   "icons": [
-    {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
     {
       "src": "icons/icon-180.png",
       "sizes": "180x180",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

@@ -194,13 +194,6 @@ p {
   }
 }
 
-.anfrage-button:hover {
-  background: linear-gradient(to right, #b61d2b, #a11726);
-  box-shadow: 0 6px 18px rgba(183, 38, 50, 0.3);
-  transform: translateY(-2px);
-}
-}
-
 /* Modal */
 .modal-overlay {
   position: fixed;

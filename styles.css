@@ -172,20 +172,33 @@ p {
 
 /* Buttons */
 .anfrage-button {
-  background: #d72638;
-  color: white;
+  display: inline-block;
+  padding: 0.65rem 1.4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 10px;
   border: none;
-  padding: 0.6rem 1.2rem;
-  margin: 1rem auto;
+  text-align: center;
+  text-decoration: none;
   cursor: pointer;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background 0.3s ease;
-  display: block;
+  background: linear-gradient(to right, #d72638, #b61d2b);
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+  .anfrage-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
 }
 
 .anfrage-button:hover {
-  background: #b61d2b;
+  background: linear-gradient(to right, #b61d2b, #a11726);
+  box-shadow: 0 6px 18px rgba(183, 38, 50, 0.3);
+  transform: translateY(-2px);
+}
 }
 
 /* Modal */

@@ -176,7 +176,7 @@ p {
   padding: 0.65rem 1.4rem;
   font-size: 1.05rem;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   text-align: center;
   text-decoration: none;
@@ -186,12 +186,15 @@ p {
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 @media (max-width: 768px) {
   .anfrage-button {
     width: 100%;
     font-size: 1rem;
     padding: 0.6rem 1.2rem;
   }
+  
+  
 }
 
 /* Modal */

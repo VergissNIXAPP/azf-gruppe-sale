@@ -188,81 +188,6 @@
     body.dark-mode .login-form button.submit {
       background-color: #e60036;
     }
-
-    @media (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
-
-  .left-side, .right-side {
-    width: 100vw;
-    height: auto;
-    min-height: 50vh;
-  }
-
-  .left-side {
-    padding: 2rem 1rem;
-    background-position: center 70%;
-    background-size: cover;
-  }
-
-  .azf-logo {
-    max-width: 180px;
-  }
-
-  .brand-logos {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-
-  .brand-logos img {
-    height: 20px;
-    max-width: 60px;
-  }
-
-  .brand-logos img[alt="Audi"] {
-    max-width: 50px;
-  }
-
-  .brand-logos img[alt="Skoda"] {
-    max-width: 45px;
-  }
-
-  .divider {
-    display: none;
-  }
-
-  .right-side {
-    padding: 2rem 1.5rem;
-  }
-
-  .login-form h2 {
-    font-size: 1.5rem;
-  }
-
-  .login-form h3 {
-    font-size: 1.1rem;
-  }
-
-  .login-form p {
-    font-size: 0.9rem;
-  }
-
-  .form-group input {
-    padding: 0.6rem;
-  }
-
-  .login-form button.submit {
-    padding: 0.7rem;
-    font-size: 0.95rem;
-  }
-
-  .dark-toggle-icon {
-    margin-bottom: 1rem;
-  }
-}
-
   </style>
 </head>
 <body>
@@ -296,8 +221,8 @@
     </div>
     <div class="login-form">
       <h2>Anmelden</h2>
-      <h3>Jetzt bei AZF-SALE anmelden!</h3>
-      <p style="text-align: left;">Genießen Sie Ihre Angebote</p>
+      <h3>Jetzt bei AZF-SALE anmelden</h3>
+      <p style="text-align: left;">Genießen Sie Ihre Angebote!</p>
       <div class="form-group">
         <label for="username">Benutzername</label>
         <input type="text" id="username" placeholder="Benutzername" />
@@ -312,21 +237,26 @@
   </div>
 
   <script>
-    function checkLogin() {
-      const user = document.getElementById('username').value.trim();
-      const pass = document.getElementById('password').value.trim();
+  function checkLogin() {
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value.trim();
 
-      if (user === 'azf' && pass === 'sale') {
-        localStorage.setItem('isLoggedIn', 'true');
-        window.location.href = 'index.html';
-      } else {
-        document.getElementById('errorMsg').textContent = 'Falsche Zugangsdaten!';
-      }
+    if (user === 'azf' && pass === 'sale') {
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('isAdmin', 'false');
+      window.location.href = 'index.html';
+    } else if (user === 'admin' && pass === '1234') {
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('isAdmin', 'true');
+      window.location.href = 'index.html';
+    } else {
+      document.getElementById('errorMsg').textContent = 'Falsche Zugangsdaten!';
     }
+  }
 
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-  </script>
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+</script>
 </body>
 </html>
